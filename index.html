@@ -411,15 +411,18 @@ body.is-resizing{user-select:none;-webkit-user-select:none}
   .tool.canva{left:84%;top:6.5%;right:auto;bottom:auto}
   .tool.claude{left:33%;top:16%;right:auto;bottom:auto}
   .tool.claudecode{left:67%;top:16%;right:auto;bottom:auto}
-  .tool.webflow{left:33%;top:84%;right:auto;bottom:auto}
-  .tool.photoshop{left:67%;top:84%;right:auto;bottom:auto}
-  .tool.github{left:16%;top:93.5%;right:auto;bottom:auto}
-  .tool.procreate{left:50%;top:93.5%;right:auto;bottom:auto}
-  .tool.huggingface{left:84%;top:93.5%;right:auto;bottom:auto}
+  .tool.webflow{left:33%;top:77.4%;right:auto;bottom:auto}
+  .tool.photoshop{left:67%;top:77.4%;right:auto;bottom:auto}
+  .tool.github{left:16%;top:86.9%;right:auto;bottom:auto}
+  .tool.procreate{left:50%;top:86.9%;right:auto;bottom:auto}
+  .tool.huggingface{left:84%;top:86.9%;right:auto;bottom:auto}
 }
 @media(max-width:590px){
   .hero{min-height:760px}
   .selection{--w:86vw;--tfs:57px;--mfs:13px;top:50%}
+  /* hero plus court ici : même décalage d'une case, rapporté à 760px */
+  .tool.webflow,.tool.photoshop{top:76.4%}
+  .tool.github,.tool.procreate,.tool.huggingface{top:85.9%}
   .comment{left:50%}
   .comment-line,.comment-pin{transform:translateX(44px)}
   .comment-box{font-size:15px;padding:9px 10px 9px 13px}
@@ -489,7 +492,7 @@ body.is-resizing{user-select:none;-webkit-user-select:none}
       <span class="frame-name"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 1v10M8 1v10M1 4h10M1 8h10"/></svg>Sites internet</span>
       <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
       <h2>Websites</h2>
-      <p>Je conçois et développe des sites internet et landing pages avec une forte attention portée au design.</p>
+      <p>Je conçois et développe des sites internet et landing pages avec une forte attention portée au design, la conversion et la compréhension.</p>
       <div class="chips"><span class="chip">Landing pages</span><span class="chip">Web design</span></div>
     </article>
     <article class="card kobver" data-key="kobver">
