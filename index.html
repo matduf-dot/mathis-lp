@@ -493,7 +493,7 @@ body.is-resizing{user-select:none;-webkit-user-select:none}
       <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
       <h2>Websites</h2>
       <p>Je conçois et développe des sites internet et landing pages avec une forte attention portée au design, la conversion et la compréhension.</p>
-      <div class="chips"><span class="chip">Landing pages</span><span class="chip">Web design</span></div>
+      <div class="chips"><span class="chip">Landing pages</span><span class="chip">Web design</span><a class="site-link" href="portfolio/">Portfolio</a></div>
     </article>
     <article class="card kobver" data-key="kobver">
       <span class="frame-name"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 1v10M8 1v10M1 4h10M1 8h10"/></svg>Couvertures de livres</span>
@@ -623,6 +623,11 @@ snapTools();
 window.addEventListener("resize", snapTools);
 window.addEventListener("load", snapTools);
 if (document.fonts) document.fonts.ready.then(snapTools);
+
+// En fichier local (file://), un lien vers un dossier vise son index.html
+if (location.protocol === "file:") {
+  document.querySelectorAll('a[href="portfolio/"]').forEach(a => a.setAttribute("href", "portfolio/index.html"));
+}
 </script>
 </body>
 </html>
