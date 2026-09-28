@@ -9,7 +9,7 @@ import { mkdir } from 'node:fs/promises';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'portfolio', 'captures');
-const SLUGS = ['soif', 'vigie', 'rankshift', 'gem-renov', 'azimut', 'copamo'];
+const SLUGS = ['chez-paulette', 'soif', 'vigie', 'rankshift', 'gem-renov', 'azimut', 'copamo'];
 
 const VIEWPORTS = {
   desktop: { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1, maxWidth: 1600 },
