@@ -550,6 +550,12 @@ footer{padding:80px var(--marge) 40px}
   .logo4 a.piece:nth-of-type(4){animation-delay:2.55s}
   .logo4:has(a.piece:hover,a.piece:focus-visible) a.piece{animation:none}
 }
+/* correctifs Safari iOS : boutons bleus, champs arrondis, zoom automatique */
+button,input{-webkit-appearance:none;appearance:none;border-radius:0;font-family:inherit}
+button{color:inherit}
+.filtres button,.plus-m{color:var(--noir)}
+.news input{border-radius:0;border-right:0}
+@media (max-width:760px){.news input{font-size:16px}}
 </style>
 </head>
 <body>
