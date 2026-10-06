@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>SDIS 47 · Refonte du site</title>
+<style>
+:root{
+  --bg:#f4f5f8;
+  --grid:#dde2eb;
+  --ink:#111216;
+  --blue:#1768ff;
+  --border:#d9dee8;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--bg);
+  background-size:58px 58px;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color:var(--ink);
+}
+.page{width:min(1100px,100%);margin:0 auto;padding:64px 28px 48px}
+h1{
+  margin:0;
+  font-size:clamp(44px,8vw,96px);
+  line-height:.88;
+  letter-spacing:-.07em;
+  font-weight:950;
+  text-transform:uppercase;
+}
+h1 span{display:block}
+.intro{margin:24px 0 0;max-width:46ch;color:#5f687f;font-size:17px;line-height:1.5}
+.grille{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:56px;padding:0;list-style:none}
+.card{
+  display:flex;
+  flex-direction:column;
+  min-height:200px;
+  padding:28px 28px 24px;
+  background:#fff;
+  border:1px solid var(--border);
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+.card:hover,.card:focus-within{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+.num{font-size:13px;color:#8a92a6}
+.card h2{
+  margin:8px 0 28px;
+  font-size:clamp(28px,3.4vw,38px);
+  line-height:1;
+  letter-spacing:-.05em;
+  font-weight:950;
+  text-transform:uppercase;
+}
+.bouton{
+  align-self:flex-start;
+  margin-top:auto;
+  padding:10px 18px;
+  border-radius:999px;
+  background:var(--blue);
+  color:#fff;
+  font-size:15px;
+  font-weight:600;
+  text-decoration:none;
+}
+.bouton:hover{background:#0f56db}
+.bouton:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.estimation{grid-column:1 / -1;min-height:0}
+footer{margin-top:56px;font-size:15px;color:#5f687f}
+footer a{color:var(--blue);text-underline-offset:3px}
+@media (max-width:700px){
+  .page{padding:40px 16px 36px}
+  .grille{grid-template-columns:1fr;gap:16px;margin-top:36px}
+  .card{min-height:0;padding:22px 20px 20px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1><span>SDIS 47 ·</span><span>Refonte du site</span></h1>
+  <p class="intro">Proposition de Mathis Dufour, maquettes non officielles réalisées à partir de l'ébauche du 15&nbsp;juillet et de la charte du SDIS.</p>
+
+  <ul class="grille">
+    <li class="card">
+      <span class="num">Maquette 01</span>
+      <h2>Accueil</h2>
+      <a class="bouton" href="01-accueil.pdf" target="_blank" rel="noopener">Voir la maquette</a>
+    </li>
+    <li class="card">
+      <span class="num">Maquette 02</span>
+      <h2>Devenir sapeur-pompier volontaire</h2>
+      <a class="bouton" href="02-devenir-volontaire.pdf" target="_blank" rel="noopener">Voir la maquette</a>
+    </li>
+    <li class="card">
+      <span class="num">Maquette 03</span>
+      <h2>Extranet · Accueil</h2>
+      <a class="bouton" href="03-extranet-accueil.pdf" target="_blank" rel="noopener">Voir la maquette</a>
+    </li>
+    <li class="card">
+      <span class="num">Maquette 04</span>
+      <h2>Extranet · Réservation de salle</h2>
+      <a class="bouton" href="04-extranet-reservation.pdf" target="_blank" rel="noopener">Voir la maquette</a>
+    </li>
+    <li class="card estimation">
+      <span class="num">Document</span>
+      <h2>Estimation budgétaire</h2>
+      <a class="bouton" href="estimation.pdf" target="_blank" rel="noopener">Voir l'estimation</a>
+    </li>
+  </ul>
+
+  <footer>Contact : <a href="mailto:mathis@mathisdufour.com">mathis@mathisdufour.com</a></footer>
+</main>
+</body>
+</html>
