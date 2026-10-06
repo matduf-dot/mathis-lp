@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Questionnaire de projet · Mathis Dufour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* DA alignée sur mathisdufour.com : grille claire, grotesque serrée en capitales, accent bleu, cadres façon Figma */
+:root{
+  --fond:#f3f4f7; --grille:#e3e5eb; --carte:#fff; --encre:#111; --gris:#6a6f7a; --gris2:#9aa0aa; --ligne:#e1e3e8;
+  --bleu:#1f5eff; --bleu2:#2b6bff; --tag:#f0f1f4;
+  --titre:"Inter Tight","Inter",system-ui,sans-serif; --texte:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--texte);font-size:16px;line-height:1.55;color:var(--encre);min-height:100vh;
+  background-color:var(--fond);
+  background-image:linear-gradient(var(--grille) 1px,transparent 1px),linear-gradient(90deg,var(--grille) 1px,transparent 1px);
+  background-size:66px 66px;background-position:-1px -1px}
+a{color:inherit}
+.haut{position:sticky;top:0;z-index:5;background:rgba(243,244,247,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.haut .in{max-width:1120px;margin:0 auto;padding:22px 24px 18px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--ligne)}
+.marque{font-family:var(--titre);font-weight:800;font-size:22px;letter-spacing:-.04em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.etape-txt{margin-left:auto;font-size:14px;color:var(--gris);white-space:nowrap}
+.retour{color:var(--bleu);text-decoration:none;font-size:15px;font-weight:500;white-space:nowrap}
+.barre{max-width:1120px;margin:0 auto;height:2px;padding:0 24px}.barre i{display:block;height:2px;width:0;background:var(--bleu);transition:width .45s ease;box-shadow:0 0 8px rgba(31,94,255,.5)}
+main{max-width:760px;margin:0 auto;padding:40px 24px 130px}
+.tag{display:inline-block;font-size:14px;color:var(--gris);margin-bottom:10px}
+.tag::before{content:"# ";color:var(--gris2)}
+.intro{text-align:center;padding-top:40px}
+.intro h1{font-family:var(--titre);font-weight:800;text-transform:uppercase;letter-spacing:-.05em;line-height:.88;font-size:clamp(56px,11vw,124px)}
+.intro p{color:#3c4049;margin:26px auto 0;font-size:18px;max-width:31em}
+.intro ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:26px}
+.intro li{background:var(--carte);border:1px solid var(--ligne);font-size:14px;padding:6px 12px;color:#3c4049}
+.etape{display:none}.etape.active{display:block;animation:entre .35s ease}
+@keyframes entre{from{opacity:0;transform:translateY(10px)}}
+.etape h2{font-family:var(--titre);font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.92;font-size:clamp(44px,8vw,76px)}
+.etape .sous{color:var(--gris);margin:12px 0 30px;font-size:16.5px}
+.champ{position:relative;background:var(--carte);border:1px solid var(--ligne);padding:20px 20px 18px;margin-bottom:16px;transition:box-shadow .2s}
+.champ label.q,.champ legend{display:block;font-weight:600;font-size:16px;line-height:1.35}
+.champ .aide{display:block;color:var(--gris);font-size:14px;margin-top:4px;line-height:1.45}
+.champ input[type=text],.champ input[type=email],.champ input[type=tel],.champ input[type=url],.champ textarea{
+  width:100%;margin-top:12px;font:inherit;font-size:16px;color:var(--encre);background:var(--tag);border:1px solid transparent;
+  border-radius:0;padding:12px 13px;-webkit-appearance:none;appearance:none}
+.champ textarea{min-height:110px;resize:vertical}
+.champ input:focus,.champ textarea:focus{outline:none;background:#fff;border-color:var(--ligne)}
+.champ input::placeholder,.champ textarea::placeholder{color:var(--gris2)}
+/* le champ actif prend le cadre de sélection de Figma */
+.champ .sel{position:absolute;inset:-1px;border:1.5px solid var(--bleu);pointer-events:none;opacity:0;transition:opacity .15s}
+.champ .sel i{position:absolute;width:11px;height:11px;border:1.5px solid var(--bleu);background:#fff;border-radius:50%}
+.champ .sel i:nth-child(1){left:-6px;top:-6px}.champ .sel i:nth-child(2){right:-6px;top:-6px}.champ .sel i:nth-child(3){left:-6px;bottom:-6px}.champ .sel i:nth-child(4){right:-6px;bottom:-6px}
+.champ:focus-within .sel{opacity:1}
+.champ:focus-within{background:#f7f9ff}
+.champ fieldset{border:0}
+.choix{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.choix label{display:inline-flex;align-items:center;background:var(--tag);padding:7px 12px;font-size:14.5px;cursor:pointer;user-select:none;border:1px solid transparent;transition:background .15s,color .15s}
+.choix label:hover{border-color:var(--ligne)}
+.choix input{position:absolute;opacity:0;pointer-events:none}
+.choix label:has(input:checked){background:var(--bleu);color:#fff}
+.choix label:has(input:focus-visible){outline:2px solid var(--bleu);outline-offset:2px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}
+.groupe{border:1px dashed #c9cdd6;padding:16px;margin-bottom:16px;background:rgba(255,255,255,.4)}
+.groupe h3{font-size:14px;font-weight:500;color:var(--gris);margin:0 2px 12px}
+.groupe h3::before{content:"# ";color:var(--gris2)}
+.req::after{content:" *";color:var(--bleu)}
+.erreur{border-color:#d93025!important}
+.msg-err{color:#d93025;font-size:13.5px;margin-top:6px;display:none}
+.erreur .msg-err{display:block}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:5;background:rgba(243,244,247,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--ligne)}
+.nav .in{max-width:760px;margin:0 auto;padding:14px 24px calc(14px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
+.btn{font:inherit;font-weight:600;font-size:16px;border-radius:999px;padding:12px 24px;cursor:pointer;-webkit-appearance:none;appearance:none;border:0}
+.btn.plein{margin-left:auto;color:#fff;background:linear-gradient(180deg,var(--bleu2),var(--bleu));box-shadow:0 0 0 3px rgba(31,94,255,.18),0 6px 18px rgba(31,94,255,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn.plein:hover{filter:brightness(1.06)}
+.btn.vide{background:transparent;color:var(--bleu);padding-left:4px}
+.btn:disabled{opacity:.4;cursor:default}
+.sauve{font-size:13px;color:var(--gris)}
+.fin{text-align:center;padding-top:50px}
+.fin h2{font-family:var(--titre);font-weight:800;text-transform:uppercase;letter-spacing:-.05em;line-height:.9;font-size:clamp(56px,11vw,110px)}
+.fin p{color:#3c4049;margin:18px auto 0;max-width:30em;font-size:17px}
+.fin .coche{display:none}
+.fin .btn.vide{border:1px solid var(--ligne);background:#fff;padding:12px 22px}
+@media (max-width:600px){
+  body{background-size:44px 44px}
+  .haut .in{padding:16px 16px 14px}.marque{font-size:18px}.etape-txt{font-size:12.5px}
+  .barre{padding:0 16px}
+  main{padding:26px 16px 120px}
+  .intro{padding-top:24px}.intro p{font-size:16px}
+  .intro li{font-size:13px;padding:5px 10px}
+  .duo{grid-template-columns:minmax(0,1fr)}
+  .champ{padding:16px 15px 15px}
+  .choix label{font-size:13.5px;padding:6px 10px}
+  .nav .in{padding-left:16px;padding-right:16px}
+  .btn{padding:11px 20px;font-size:15px}
+  .sauve{display:none}
+}
+</style>
+</head>
+<body>
+<header class="haut">
+  <div class="in"><a class="marque" href="https://www.mathisdufour.com/">Mathis Dufour</a><span class="etape-txt" id="etapeTxt">Introduction</span></div>
+  <div class="barre"><i id="barre"></i></div>
+</header>
+
+<main>
+  <form id="f" novalidate>
+    <section class="etape active intro" data-titre="Introduction">
+      <span class="tag" id="tagClient">Questionnaire de projet</span>
+      <h1 id="bonjour">Votre futur site</h1>
+      <p>Plus vous m'en dites, plus votre site sera complet et fidèle à ce que vous faites. Pas besoin de bien écrire : quelques mots, des notes en vrac ou des phrases rapides suffisent. Je m'occupe de toute la rédaction.</p>
+      <ul>
+        <li>5 minutes pour l'essentiel</li><li>6 étapes courtes</li><li>Sauvegarde automatique</li><li>* champs obligatoires</li>
+      </ul>
+    </section>
+  </form>
+
+  <section class="fin" id="fin" hidden>
+    <div class="coche"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>Merci&nbsp;!</h2>
+    <p id="finTxt">J'ai bien reçu vos réponses. Je reviens vers vous très vite avec une première version des textes et de la page d'accueil.</p>
+    <p style="margin-top:22px"><button class="btn vide" type="button" id="telecharger">Télécharger une copie de mes réponses</button></p>
+  </section>
+</main>
+
+<nav class="nav" aria-label="Navigation du questionnaire">
+  <div class="in">
+    <button class="btn vide" type="button" id="prec">Retour</button>
+    <span class="sauve" id="sauve" aria-live="polite"></span>
+    <button class="btn plein" type="button" id="suiv">Commencer</button>
+  </div>
+</nav>
+
+<script>
+/* ============================================================
+   1. RÉGLAGES
+   ============================================================ */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbzlNBCm2sh9TiGmsaZpXlmhxNWbHehPYu6cnfY-WNk_6eCLEp-RJl6kq6YYRTD6EWOA/exec";
+
+/* ============================================================
+   2. LES QUESTIONS : à modifier ici pour un autre type de client.
+   type : text | email | tel | url | textarea | choix (plusieurs) | radio (un seul)
+   ============================================================ */
+const ETAPES = [
+ {titre:"Vous", sous:"Les informations de base sur votre entreprise.", champs:[
+  {duo:[
+   {id:"entreprise",q:"Nom de l'entreprise",type:"text",req:1},
+   {id:"contact",q:"Votre nom et votre fonction",type:"text",req:1,ex:"Ex. : Jean Martin, gérant"}]},
+  {duo:[
+   {id:"email",q:"Votre e-mail",type:"email",req:1},
+   {id:"tel",q:"Votre téléphone",type:"tel"}]},
+  {id:"activite",q:"Votre activité, en une phrase",type:"textarea",req:1,aide:"Comme vous la présenteriez à quelqu'un que vous rencontrez pour la première fois.",ex:"Ex. : Nous concevons des maisons et des bâtiments économes en énergie, du neuf à la rénovation."},
+  {duo:[
+   {id:"zone",q:"Où intervenez-vous ?",type:"text",ex:"Ex. : Auxerre et toute l'Yonne"},
+   {id:"depuis",q:"Depuis quand existez-vous ?",type:"text",ex:"Ex. : 2003"}]},
+  {id:"histoire",q:"Votre histoire, en quelques lignes",type:"textarea",aide:"Pourquoi vous avez créé l'entreprise, ce qui vous anime dans votre métier. C'est la base de la page « À propos ».",ex:"Ex. : après dix ans en agence, j'ai voulu construire autrement, avec des matériaux sains et des bâtiments qui consomment peu."},
+  {id:"equipe",q:"Votre équipe",type:"textarea",aide:"Combien vous êtes, qui fait quoi, les profils ou diplômes à mettre en avant.",ex:"Ex. : 2 associés architectes, 1 dessinatrice, 1 assistante."}
+ ]},
+ {titre:"Ce que vous faites", sous:"Vos prestations et la façon dont vous travaillez.", champs:[
+  {id:"prestations",q:"Vos prestations",type:"textarea",req:1,aide:"Une par ligne. Pas besoin de détailler, quelques mots suffisent.",ex:"Construction neuve\nRénovation énergétique\nAudit énergétique"},
+  {id:"phare",q:"La prestation que vous aimeriez vendre davantage",type:"text",aide:"Celle qui vous plaît le plus ou qui rapporte le plus."},
+  {id:"clients",q:"Pour qui travaillez-vous ?",type:"choix",options:["Particuliers","Entreprises","Collectivités et organismes publics","Associations","Professionnels de mon secteur"],autre:1},
+  {id:"deroule",q:"Comment se passe un projet avec vous, du premier contact à la fin ?",type:"textarea",aide:"Les grandes étapes, dans l'ordre. C'est souvent ce qui rassure le plus un futur client.",ex:"Ex. : premier rendez-vous gratuit, visite sur place, esquisse, devis, dossier de permis, suivi du chantier."},
+  {id:"budget",q:"Le budget habituel de vos clients",type:"text",aide:"Facultatif : une fourchette suffit, elle ne sera pas forcément affichée.",ex:"Ex. : de 15 000 € à 300 000 €"}
+ ]},
+ {titre:"Ce qui vous distingue", sous:"Ce qui fait qu'un client vous choisit vous, et pas un autre.", champs:[
+  {id:"pourquoi",q:"Pourquoi vos clients vous choisissent-ils ?",type:"textarea",req:1,aide:"Les trois raisons qui reviennent le plus. Si vous ne savez pas, pensez à ce qu'on vous dit en fin de projet.",ex:"1. \n2. \n3. "},
+  {id:"chiffres",q:"Quelques chiffres dont vous êtes fier",type:"textarea",ex:"Ex. : 20 ans d'expérience, 300 projets livrés, consommation divisée par 4 sur un bâtiment rénové"},
+  {id:"labels",q:"Vos certifications, labels, assurances ou adhésions",type:"textarea",ex:"Ex. : RGE, France Rénov', Ordre des architectes"},
+  {id:"concurrents",q:"Vos principaux concurrents",type:"textarea",aide:"Facultatif : les noms ou les sites, et ce que vous faites mieux qu'eux."},
+  {id:"avis",q:"Ce que vos clients disent de vous",type:"textarea",aide:"Des phrases d'avis Google, de mails de remerciement, ou ce qu'on vous dit souvent. Avec le prénom si possible."},
+  {groupe:"Trois réalisations à mettre en avant", repete:3, champs:[
+   {id:"real",q:"Réalisation",type:"text",ex:"Nom du projet, ville, année"},
+   {id:"real_desc",q:"Ce qui la rend intéressante",type:"textarea",ex:"Le défi, la solution, le résultat."}]}
+ ]},
+ {titre:"Vos clients", sous:"Pour que le site réponde à leurs questions avant même qu'ils vous appellent.", champs:[
+  {id:"ideal",q:"Décrivez votre client idéal",type:"textarea",ex:"Ex. : un couple qui veut rénover une longère en faisant baisser ses factures."},
+  {id:"questions",q:"Les questions qu'on vous pose toujours avant de signer",type:"textarea",aide:"Elles deviendront une rubrique « questions fréquentes ».",ex:"Ex. : Combien ça coûte ? Combien de temps ça prend ? Est-ce que je peux avoir des aides ?"},
+  {id:"craintes",q:"Leurs hésitations ou leurs peurs",type:"textarea",ex:"Ex. : peur que le budget dérape, de ne pas être écouté."}
+ ]},
+ {titre:"Votre site", sous:"Ce que le site doit faire pour vous, et le style qui vous ressemble.", champs:[
+  {id:"objectif",q:"Le rôle principal de votre site",type:"choix",req:1,aide:"Plusieurs réponses possibles.",options:["Être trouvé sur Google","Rassurer ceux qui me découvrent","Montrer mes réalisations","Recevoir des demandes de devis ou de rendez-vous","Recruter","Informer mes clients actuels"],autre:1},
+  {id:"action",q:"Que doit faire un visiteur intéressé ?",type:"radio",options:["M'appeler","Remplir un formulaire de contact","Demander un devis","Prendre rendez-vous en ligne"],autre:1},
+  {id:"ton",q:"Le ton qui vous ressemble",type:"choix",options:["Sobre et professionnel","Chaleureux et proche","Haut de gamme","Technique et expert","Engagé"],autre:1},
+  {id:"aime",q:"Des sites que vous aimez",type:"textarea",aide:"Concurrents ou pas, de votre métier ou pas : les liens, et ce qui vous plaît dedans."},
+  {id:"refus",q:"Ce que vous ne voulez surtout pas",type:"textarea",ex:"Ex. : trop de texte, des photos de banque d'images, des couleurs criardes."},
+  {id:"charte",q:"Avez-vous un logo et des couleurs à respecter ?",type:"radio",options:["Oui, je vous les envoie","Un logo, mais pas de couleurs définies","Non, rien de défini"]}
+ ]},
+ {titre:"Infos pratiques", sous:"Tout ce qui s'affichera tel quel sur le site.", champs:[
+  {id:"adresses",q:"Adresse(s) à afficher",type:"textarea"},
+  {duo:[
+   {id:"tel_site",q:"Téléphone à afficher",type:"tel"},
+   {id:"email_site",q:"E-mail à afficher",type:"email"}]},
+  {id:"horaires",q:"Horaires d'ouverture",type:"text",ex:"Ex. : du lundi au vendredi, 9 h - 12 h 30 et 14 h - 18 h"},
+  {id:"reseaux",q:"Vos réseaux sociaux",type:"textarea",aide:"Les liens de vos pages Facebook, Instagram, LinkedIn…"},
+  {id:"legal",q:"Mentions légales",type:"textarea",aide:"Numéro SIRET, et le cas échéant numéro d'inscription à un ordre professionnel ou au registre de votre métier."},
+  {id:"libre",q:"Autre chose à me dire ?",type:"textarea"}
+ ]}
+];
+
+/* ============================================================
+   3. CONSTRUCTION DU FORMULAIRE
+   ============================================================ */
+const f=document.getElementById('f');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LIBELLES={};
+function champHTML(c,suffixe=""){
+  const id=c.id+suffixe, lab=c.q+(suffixe?" "+suffixe.replace('_',''):'');
+  LIBELLES[id]=lab;
+  const aide=c.aide?`<span class="aide" id="${id}_aide">${esc(c.aide)}</span>`:'';
+  const req=c.req?' class="q req"':' class="q"';
+  const ph=c.ex?` placeholder="${esc(c.ex)}"`:'';
+  const err=`<div class="msg-err">Cette réponse est nécessaire.</div>`;
+  if(c.type==='choix'||c.type==='radio'){
+    const t=c.type==='choix'?'checkbox':'radio';
+    const opts=c.options.map((o,i)=>`<label><input type="${t}" name="${id}" value="${esc(o)}">${esc(o)}</label>`).join('');
+    const autre=c.autre?`<input type="text" name="${id}_autre" aria-label="${esc(c.q)} : autre" placeholder="Autre, à préciser">`:'';
+    if(c.autre) LIBELLES[id+'_autre']=c.q+' (autre)';
+    return `<div class="champ" data-id="${id}" data-req="${c.req?1:0}" data-type="${c.type}"><fieldset><legend${c.req?' class="req"':''}>${esc(c.q)}</legend>${aide}<div class="choix">${opts}</div>${autre}</fieldset>${err}</div>`;
+  }
+  const ctl=c.type==='textarea'?`<textarea id="${id}" name="${id}"${ph}${c.aide?` aria-describedby="${id}_aide"`:''}></textarea>`
+    :`<input id="${id}" name="${id}" type="${c.type}"${ph}${c.aide?` aria-describedby="${id}_aide"`:''} autocomplete="${{email:'email',tel:'tel'}[c.type]||'off'}">`;
+  return `<div class="champ" data-id="${id}" data-req="${c.req?1:0}" data-type="${c.type}"><label class="q${c.req?' req':''}" for="${id}">${esc(c.q)}</label>${aide}${ctl}${err}</div>`;
+}
+ETAPES.forEach((e,i)=>{
+  let h=`<section class="etape" data-titre="${esc(e.titre)}"><span class="tag">Étape ${i+1} sur ${ETAPES.length}</span><h2>${esc(e.titre)}</h2><p class="sous">${esc(e.sous)}</p>`;
+  e.champs.forEach(c=>{
+    if(c.duo) h+=`<div class="duo">${c.duo.map(d=>champHTML(d)).join('')}</div>`;
+    else if(c.groupe){ for(let n=1;n<=c.repete;n++){ h+=`<div class="groupe"><h3>${esc(c.groupe.replace(/^Trois /,''))} · ${n}</h3>${c.champs.map(d=>champHTML(d,'_'+n)).join('')}</div>`;}
+      h=h.replace(`<div class="groupe"><h3>${esc(c.groupe.replace(/^Trois /,''))} · 1</h3>`,`<p class="aide" style="margin:6px 4px 12px;color:var(--gris);font-size:14px">${esc(c.groupe)}</p><div class="groupe"><h3>${esc(c.groupe.replace(/^Trois /,''))} · 1</h3>`);}
+    else h+=champHTML(c);
+  });
+  f.insertAdjacentHTML('beforeend',h+'</section>');
+});
+
+f.querySelectorAll('.champ').forEach(c=>c.insertAdjacentHTML('afterbegin','<span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i></span>'));
+/* ============================================================
+   4. NAVIGATION, SAUVEGARDE ET ENVOI
+   ============================================================ */
+const sections=[...f.querySelectorAll('.etape')], N=sections.length-1;
+const prec=document.getElementById('prec'), suiv=document.getElementById('suiv'), barre=document.getElementById('barre'), etTxt=document.getElementById('etapeTxt'), sauve=document.getElementById('sauve');
+const P=new URLSearchParams(location.search), CLIENT=(P.get('c')||P.get('client')||'').trim();
+const CLE='brief-'+(CLIENT||'general');
+if(CLIENT){document.getElementById('tagClient').textContent=CLIENT;document.title='Questionnaire · '+CLIENT}
+let cur=0;
+function lire(){
+  const d={};
+  Object.keys(LIBELLES).forEach(k=>{
+    const els=f.querySelectorAll(`[name="${k}"]`); if(!els.length)return;
+    if(els[0].type==='checkbox'||els[0].type==='radio') d[k]=[...els].filter(x=>x.checked).map(x=>x.value).join(' ; ');
+    else d[k]=els[0].value.trim();
+  });
+  return d;
+}
+function ecrire(d){
+  Object.entries(d).forEach(([k,v])=>{
+    const els=f.querySelectorAll(`[name="${k}"]`); if(!els.length)return;
+    if(els[0].type==='checkbox'||els[0].type==='radio'){const vs=String(v).split(' ; ');els.forEach(x=>x.checked=vs.includes(x.value))}
+    else els[0].value=v;
+  });
+}
+try{const s=localStorage.getItem(CLE); if(s){const o=JSON.parse(s); ecrire(o.d||{}); cur=Math.min(o.cur||0,N)}}catch(e){}
+let tSauve;
+function sauver(silence){try{localStorage.setItem(CLE,JSON.stringify({d:lire(),cur}));if(silence===true)return;sauve.textContent='Brouillon enregistré';clearTimeout(tSauve);tSauve=setTimeout(()=>sauve.textContent='',1800)}catch(e){}}
+f.addEventListener('input',()=>sauver());f.addEventListener('change',()=>sauver());
+function valider(i){
+  let ok=true,premier=null;
+  sections[i].querySelectorAll('.champ[data-req="1"]').forEach(ch=>{
+    const id=ch.dataset.id, els=f.querySelectorAll(`[name="${id}"]`);
+    let v=els[0].type==='checkbox'||els[0].type==='radio'?[...els].some(x=>x.checked)||!!(f.querySelector(`[name="${id}_autre"]`)||{}).value:els[0].value.trim()!=='';
+    if(v&&els[0].type==='email') v=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(els[0].value.trim());
+    ch.classList.toggle('erreur',!v); if(!v){ok=false;premier=premier||ch}
+  });
+  if(premier){premier.scrollIntoView({behavior:'smooth',block:'center'});const x=premier.querySelector('input,textarea');x&&x.focus({preventScroll:true})}
+  return ok;
+}
+f.addEventListener('input',e=>{const ch=e.target.closest('.champ');ch&&ch.classList.remove('erreur')});
+function aller(i){
+  sections[cur].classList.remove('active'); cur=i; sections[cur].classList.add('active');
+  prec.style.visibility=cur===0?'hidden':'visible';
+  suiv.textContent=cur===0?'Commencer':cur===N?'Envoyer mes réponses':'Continuer';
+  etTxt.textContent=cur===0?'Introduction':`${cur} / ${N} · ${sections[cur].dataset.titre}`;
+  barre.style.width=(cur/N*100)+'%';
+  scrollTo({top:0,behavior:'instant'}); sauver(true);
+}
+prec.onclick=()=>cur>0&&aller(cur-1);
+suiv.onclick=async()=>{
+  if(cur>0&&!valider(cur))return;
+  if(cur<N)return aller(cur+1);
+  await envoyer();
+};
+function csv(d){
+  const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const cles=['date','client',...Object.keys(LIBELLES)];
+  const lignes=[['Date','Client',...Object.keys(LIBELLES).map(k=>LIBELLES[k])].map(q).join(';'),cles.map(k=>q(d[k])).join(';')];
+  return '﻿'+lignes.join('\r\n');
+}
+function telecharger(d){
+  const b=new Blob([csv(d)],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(b);a.download='questionnaire-'+(d.entreprise||CLIENT||'site').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.csv';a.click();
+}
+let derniere=null;
+async function envoyer(){
+  const d=Object.assign({date:new Date().toLocaleString('fr-FR'),client:CLIENT},lire());
+  derniere=d; suiv.disabled=true; suiv.textContent='Envoi…';
+  let envoye=false;
+  if(ENDPOINT){
+    try{await fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({libelles:LIBELLES,reponses:d})});envoye=true}catch(e){}
+  }
+  f.hidden=true; document.querySelector('.nav').hidden=true; barre.style.width='100%'; etTxt.textContent='Terminé';
+  const fin=document.getElementById('fin'); fin.hidden=false;
+  if(!envoye){fin.querySelector('h2').textContent='Merci pour vos réponses';document.getElementById('finTxt').textContent="L'envoi automatique n'a pas fonctionné. Téléchargez vos réponses avec le bouton ci-dessous et envoyez-moi le fichier par mail."}
+  else{try{localStorage.removeItem(CLE)}catch(e){}}
+}
+document.getElementById('telecharger').onclick=()=>derniere&&telecharger(derniere);
+aller(cur);
+</script>
+</body>
+</html>

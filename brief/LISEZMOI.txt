@@ -1,0 +1,17 @@
+QUESTIONNAIRE DE PROJET (mathisdufour.com/brief/)
+
+Lien à envoyer à un client : https://www.mathisdufour.com/brief/?c=Nom%20du%20client
+Le paramètre ?c= personnalise le titre (« Parlons de votre futur site, Atria Architectes »).
+
+Pour changer les questions : modifier le tableau ETAPES dans index.html.
+Pour recevoir les réponses : coller l'URL du script Google dans la constante ENDPOINT (en haut du script de index.html).
+
+Mise en place du script Google (une seule fois, 5 minutes) :
+1. Créer une Google Sheet, par exemple « Questionnaires clients ».
+2. Menu Extensions > Apps Script. Remplacer tout le contenu par apps-script.gs. Enregistrer.
+3. Bouton Déployer > Nouveau déploiement > type « Application Web ».
+   Exécuter en tant que : Moi. Qui a accès : Tout le monde. Déployer.
+4. Autoriser l'accès (si Google affiche « application non validée » : Paramètres avancés > Accéder au projet).
+5. Copier l'URL qui finit par /exec et la coller dans ENDPOINT.
+
+Chaque réponse ajoute une ligne dans la feuille et envoie un mail avec le CSV en pièce jointe.
