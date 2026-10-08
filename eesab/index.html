@@ -671,7 +671,7 @@ button{color:inherit}
 </section>
 
 <section class="candidater" id="candidater">
-  <img loading="lazy" decoding="async" class="fond" src="medias/img18.webp" srcset="medias/img18-600.webp 600w, medias/img18.webp 1200w" sizes="(max-width: 760px) 70vw, 40vw" alt="Performance sur une place de Quimper, devant un public assis au sol">
+  <img loading="lazy" decoding="async" class="fond" src="medias/img18.jpg" width="1500" height="630" alt="Performance sur une place de Quimper, devant un public assis au sol">
   <p class="credit">Vernissage de l'exposition des diplômé·es DNSEP performance de Mike Lelievre et Madeg Moisan, 2026, à Quimper.</p>
   <div class="cartouche bz">
     <h2>Candidater en première année</h2>
@@ -821,6 +821,7 @@ button{color:inherit}
 <script>
 const W=()=>document.querySelectorAll('.bz,.pan,.volet,.oeuvre,.apercu,.rdv,.cartouche').forEach(e=>e.style.setProperty('--w',e.offsetWidth+'px'));
 W();addEventListener('resize',W);addEventListener('load',W);
+if(window.ResizeObserver){const ro=new ResizeObserver(W);document.querySelectorAll('.oeuvre').forEach(e=>ro.observe(e))}document.querySelectorAll('.oeuvre img').forEach(i=>i.addEventListener('load',W));
 const info=document.querySelector('.info-ville');
 document.querySelectorAll('a.piece').forEach(a=>{const f=()=>info.textContent=a.dataset.info;a.addEventListener('mouseenter',f);a.addEventListener('focus',f)});
 const IM={"salle": "medias/img19.webp", "ceramique": "medias/vignette-42.webp", "projection": "medias/vignette-43.webp", "terrain": "medias/vignette-44.webp", "verrieres": "medias/vignette-45.webp", "violet": "medias/vignette-46.webp"};const ap=document.querySelector('.apercu'),apI=ap.querySelector('img'),apP=ap.querySelector('.panneau'),apC=ap.querySelector('figcaption');
