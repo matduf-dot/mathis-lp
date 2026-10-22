@@ -1,144 +1,371 @@
-<!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>Les Augustins · Pôle culturel et touristique de Marciac</title><meta name="description" content="Musée du jazz, film immersif, Micro-Folie, Fab Lab, résidences d'artistes et conseils de séjour au cœur de Marciac.">
-<meta property="og:title" content="Les Augustins · Pôle culturel et touristique de Marciac"><meta property="og:image" content="img/nuit.jpg">
-<link rel="preload" href="fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css"></head>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Les Augustins, Marciac · Mathis Dufour</title>
+<meta name="description" content="Maquettes du site du Pôle culturel et touristique des Augustins : quatre pages navigables, sur ordinateur et sur mobile." />
+<style>
+/* Copie du CSS de ../portfolio/index.html */
+:root{
+  --bg:#f4f5f8;
+  --grid:#dde2eb;
+  --ink:#111216;
+  --blue:#1768ff;
+  --muted:#6f778c;
+  --border:#d9dee8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%}
+body{
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--bg);
+  background-size:58px 58px;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color:var(--ink);
+}
+button,a{font:inherit}
+.page{
+  min-height:100vh;
+  padding:28px 28px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.wrap{width:min(1380px,100%);margin:0 auto}
+
+/* En-tête */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--border);
+}
+.brand{
+  color:var(--ink);
+  font-size:22px;
+  font-weight:950;
+  line-height:1;
+  letter-spacing:-.06em;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.brand:hover,.brand:focus-visible{color:var(--blue);outline:none}
+
+/* Lien bleu, identique à « kobverstudio.com » */
+.site-link{
+  color:var(--blue);
+  font-size:14px;
+  font-weight:500;
+  text-decoration:none;
+  text-underline-offset:3px;
+}
+a.site-link:hover,a.site-link:focus-visible{text-decoration:underline;outline:none}
+
+/* Titre de page */
+.intro{padding:72px 0 64px;text-align:center}
+.intro h1{
+  margin:0;
+  font-size:clamp(34px,9.4vw,100px);
+  line-height:.84;
+  letter-spacing:-.08em;
+  font-weight:950;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.intro p{
+  margin:26px auto 0;
+  max-width:46ch;
+  color:#333741;
+  font-size:16px;
+  line-height:1.55;
+}
+
+/* Grille de cartes : 2 colonnes, 1 sur mobile */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:20px;
+  row-gap:52px;
+  margin:0 auto;
+  padding:0;
+  list-style:none;
+}
+.grid > li{min-width:0}
+.card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  min-width:0;
+  padding:16px 16px 16px;
+  background:#fff;
+  border:1px solid var(--border);
+  transition:border-color .15s ease;
+}
+.frame-name{
+  position:absolute;
+  left:0;
+  bottom:calc(100% + 8px);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  max-width:100%;
+  font-size:13px;
+  color:#8a92a6;
+  white-space:nowrap;
+  transition:color .15s ease;
+}
+.frame-name svg{flex:none;width:11px;height:11px}
+.card .h{
+  position:absolute;
+  width:12px;height:12px;
+  background:#fff;
+  border:2px solid var(--blue);
+  border-radius:50%;
+  opacity:0;
+  transition:opacity .15s ease;
+}
+.card .h.tl{left:-7px;top:-7px}
+.card .h.tr{right:-7px;top:-7px}
+.card .h.bl{left:-7px;bottom:-7px}
+.card .h.br{right:-7px;bottom:-7px}
+.card:hover,.card:focus-within{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+.card:hover .h,.card:focus-within .h{opacity:1}
+.card:hover .frame-name,.card:focus-within .frame-name{color:var(--blue)}
+
+/* Cadre de navigateur */
+.browser{
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+  background:var(--bg);
+}
+.browser-bar{
+  display:flex;
+  gap:6px;
+  padding:9px 11px;
+  border-bottom:1px solid var(--border);
+  background:#fff;
+}
+.browser-bar i{width:8px;height:8px;border-radius:50%;background:#d9dee8}
+.shot{
+  display:block;
+  aspect-ratio:1440/900;
+  overflow:hidden;
+}
+.shot img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+  transform-origin:top center;
+  transition:transform .7s cubic-bezier(.2,.7,.2,1);
+}
+@media (hover:hover){
+  .card:hover .shot img{transform:scale(1.035) translateY(-6px)}
+}
+
+.card h2{
+  margin:18px 0 0;
+  font-size:clamp(20px,1.9vw,28px);
+  font-weight:950;
+  line-height:.9;
+  letter-spacing:-.06em;
+  text-transform:uppercase;
+}
+/* Lien étendu : toute la carte est cliquable */
+.card h2 a{color:inherit;text-decoration:none;outline:none}
+.card h2 a::after{content:"";position:absolute;inset:0;z-index:1}
+.nowrap{white-space:nowrap}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+.card p{
+  margin:10px 0 0;
+  max-width:52ch;
+  color:#5f687f;
+  font-size:14px;
+  line-height:1.45;
+}
+/* Description limitée à 2 lignes */
+.card h2 + p{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  line-clamp:2;
+  overflow:hidden;
+}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;padding-top:16px}
+.chip{
+  padding:4px 7px;
+  border-radius:4px;
+  background:var(--bg);
+  color:#53607c;
+  font-size:12px;
+  white-space:nowrap;
+}
+/* Lien toujours sur sa propre ligne, pour un bas de carte identique partout */
+.chips .site-link{flex-basis:100%;margin-top:4px;text-align:right;font-size:13px;white-space:nowrap}
+.card:hover .chips .site-link,.card:focus-within .chips .site-link{text-decoration:underline}
+.card .aside{
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(100% + 10px);
+  margin:0;
+  max-width:none;
+  color:#8a92a6;
+  font-size:12px;
+  line-height:1.4;
+}
+
+/* Pied de page */
+.footer{padding:84px 0 44px;text-align:center}
+.credit{margin:22px 0 0;color:#8a92a6;font-size:12px}
+.email-pill{
+  display:inline-flex;
+  padding:.5em 1.125em .5625em;
+  border-radius:999px;
+  background:linear-gradient(110deg,var(--blue) 0%,var(--blue) 45%,#6fa3ff 50%,var(--blue) 55%,var(--blue) 100%);
+  background-size:200% 100%;
+  animation:pill-shimmer 2.6s linear infinite;
+  color:white;
+  text-decoration:none;
+  font-size:16px;
+  font-weight:500;
+  line-height:1;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.22),
+    0 3px 0 rgba(38,52,91,.10);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.email-pill:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.22),
+    0 12px 30px rgba(23,104,255,.28);
+}
+@keyframes pill-shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+
+@media (prefers-reduced-motion:reduce){
+  .email-pill{animation:none}
+  .shot img{transition:none}
+  .card:hover .shot img{transform:none}
+}
+
+@media(max-width:1099px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;row-gap:48px}
+  .card h2{font-size:clamp(20px,2.6vw,26px)}
+}
+@media(max-width:820px){
+  .page{padding:18px}
+  .intro{padding:56px 0 52px}
+}
+@media(max-width:760px){
+  .grid{grid-template-columns:minmax(0,1fr);column-gap:12px;row-gap:40px}
+  .card{padding:10px 10px 12px}
+  .card h2{margin-top:12px;font-size:clamp(15px,4.4vw,22px)}
+  .card p{margin-top:6px;font-size:12px;line-height:1.4}
+  .frame-name{font-size:11px;gap:4px;bottom:calc(100% + 6px);white-space:normal;line-height:1.2;align-items:flex-start}
+  .frame-name svg{width:9px;height:9px}
+  /* Trop étroit pour les étiquettes : on garde seulement le lien */
+  .chips{padding-top:10px}
+  .chip{display:none}
+  .chips .site-link{margin-top:0;text-align:left;font-size:12px}
+  .card .aside{font-size:11px}
+}
+@media(max-width:590px){
+  .intro p{font-size:15px}
+}
+</style>
+</head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<clipPath id="arche" clipPathUnits="objectBoundingBox"><polygon points="0.0536,0.9880 0.0536,0.6075 0.0643,0.5374 0.0857,0.4673 0.1036,0.4206 0.1321,0.3738 0.1607,0.3271 0.2000,0.2804 0.2250,0.2570 0.2500,0.2336 0.2786,0.2103 0.3071,0.1869 0.3429,0.1636 0.3821,0.1402 0.4286,0.1121 0.4732,0.0935 0.5179,0.1121 0.5643,0.1402 0.6036,0.1636 0.6393,0.1869 0.6679,0.2103 0.6964,0.2336 0.7214,0.2570 0.7464,0.2804 0.7857,0.3271 0.8143,0.3738 0.8429,0.4206 0.8607,0.4673 0.8821,0.5374 0.8929,0.6075 0.8929,0.9880"/></clipPath>
-<clipPath id="ogive" clipPathUnits="objectBoundingBox"><path d="M0,1 V0.43 C0,0.2 0.21,0.035 0.5,0 C0.79,0.035 1,0.2 1,0.43 V1 Z"/></clipPath>
-</defs></svg>
-<a class="skip" href="#main"><span data-i18n="skip">Aller au contenu</span></a>
-<div class="top"><div class="wrap">
-  <div class="open"><i class="dot"></i><span data-i18n="top.open">Ouvert aujourd'hui</span><span class="oh"> · <span class="tbd">horaires prévus ici</span></span></div>
-  <div class="ext"><a href="#jim"><span data-i18n="top.jim">Festival Jazz in Marciac</span> <svg class="lk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="#ot"><span data-i18n="top.ot">Office de Tourisme</span> <svg class="lk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="#a11y"><span data-i18n="top.access">Accessibilité</span></a></div>
-</div></div>
-<header class="hd"><div class="wrap">
-  <a class="brand" href="augustins-accueil.html" aria-label="Pôle culturel et touristique des Augustins, accueil"><svg class="" viewBox="0 0 280 428" aria-hidden="true" focusable="false" ><path fill="#4D1324" d="M5.36,423.44C4.64,423.12 4.67,425.50 4.67,348.45C4.67,269.36 4.71,264.05 5.49,255.25C5.67,253.23 5.90,250.35 6.00,248.83C6.10,247.32 6.29,245.30 6.43,244.33C6.56,243.37 6.82,241.05 7.01,239.19C7.19,237.32 7.41,235.48 7.49,235.10C7.57,234.72 7.76,233.40 7.91,232.17C8.05,230.93 8.32,229.05 8.50,228.00C8.68,226.95 9.10,224.43 9.43,222.42C14.12,193.76 23.58,164.16 36.03,139.26C41.26,128.81 47.80,117.52 52.61,110.64C53.55,109.30 54.87,107.35 55.54,106.31C57.28,103.64 63.79,95.10 67.40,90.75C75.11,81.46 84.90,71.40 93.92,63.50C100.01,58.17 100.05,57.64 94.55,55.23C68.96,44.03 34.49,36.66 4.88,36.05L0.00,35.95L0.00,17.97L0.00,0.00L2.14,0.00C3.62,0.00 4.43,0.07 4.77,0.23C5.65,0.65 9.00,0.73 9.00,0.32C9.00,-0.15 16.94,-0.10 18.14,0.38C19.19,0.80 23.06,1.45 27.35,1.91C64.54,5.90 96.34,14.97 125.17,29.79C133.71,34.19 133.07,33.89 134.26,33.97C135.66,34.06 135.99,33.93 140.69,31.46C171.13,15.49 203.76,6.12 244.08,1.75C247.42,1.39 251.09,0.76 252.01,0.39C252.69,0.11 253.65,0.08 264.85,0.04L276.96,-0.00L277.15,0.74C277.53,2.26 277.40,34.87 277.01,35.37C276.68,35.79 276.68,35.79 270.38,35.90C237.57,36.50 207.05,42.37 179.17,53.45C168.65,57.63 168.32,58.11 173.12,62.33C181.47,69.69 193.75,82.28 195.15,84.91C196.32,87.13 195.02,87.89 185.50,90.56C180.57,91.95 170.18,95.54 165.17,97.59C159.29,100.01 159.65,100.09 154.19,94.86C148.62,89.52 143.90,85.39 138.85,81.43C134.73,78.21 134.02,78.18 130.20,81.05C117.93,90.27 101.63,106.36 93.98,116.79C92.89,118.27 91.40,120.26 90.66,121.20C89.03,123.30 83.16,131.93 80.84,135.65C72.85,148.46 65.24,164.09 60.13,178.17C57.55,185.30 56.69,187.84 55.01,193.33C52.80,200.55 52.81,200.53 52.17,203.42C51.88,204.70 51.36,206.84 50.99,208.17C50.63,209.50 50.15,211.48 49.93,212.58C49.70,213.68 49.29,215.52 49.02,216.67C48.74,217.81 48.29,220.10 48.01,221.75C47.73,223.40 47.21,226.42 46.84,228.45C46.48,230.49 46.06,233.26 45.91,234.62C45.77,235.97 45.47,238.17 45.25,239.50C44.89,241.65 44.19,248.09 43.92,251.75C43.86,252.48 43.71,254.17 43.58,255.50C42.75,263.79 42.75,263.49 42.75,344.83C42.75,428.32 42.84,421.69 41.72,422.67C41.42,422.93 40.89,423.23 40.54,423.32C39.76,423.53 5.82,423.65 5.36,423.44ZM224.75,423.25C223.86,422.93 223.24,422.21 223.03,421.23C222.89,420.58 222.78,342.08 222.89,327.00C222.95,318.69 222.64,268.58 222.52,266.42C222.43,264.95 222.28,261.99 222.18,259.83C221.89,253.54 221.68,250.68 221.35,248.13C221.18,246.82 220.98,245.04 220.92,244.17C220.86,243.30 220.67,241.53 220.50,240.25C220.33,238.97 220.11,237.01 220.01,235.91C219.92,234.80 219.68,233.15 219.50,232.24C219.31,231.33 218.97,229.31 218.75,227.75C218.20,223.80 217.58,220.21 216.91,217.08C216.60,215.62 216.19,213.48 216.00,212.33C215.81,211.19 215.36,209.12 215.00,207.75C214.63,206.38 214.05,204.01 213.70,202.50C211.46,192.91 206.31,177.18 201.99,166.72C197.57,156.00 192.55,146.01 186.42,135.73C182.44,129.05 182.37,129.18 191.85,126.10C194.55,125.23 198.29,124.09 200.17,123.58C202.05,123.06 205.16,122.20 207.09,121.66C213.23,119.93 217.68,119.13 219.05,119.51C220.81,120.00 223.07,123.69 229.40,136.33C248.73,174.99 258.50,216.31 260.67,268.58C260.90,274.25 260.89,420.53 260.66,421.38C260.40,422.32 259.63,423.09 258.76,423.31C257.55,423.62 225.62,423.56 224.75,423.25Z"/><path fill="#A84824" d="M42.75,308.57C42.33,298.10 42.89,262.34 43.58,255.50C43.71,254.17 43.86,252.48 43.92,251.75C44.19,248.09 44.89,241.65 45.25,239.50C45.47,238.17 45.77,235.97 45.91,234.62C46.06,233.26 46.48,230.49 46.84,228.45C47.21,226.42 47.73,223.40 48.01,221.75C48.29,220.10 48.74,217.81 49.02,216.67C49.29,215.52 49.70,213.68 49.93,212.58C50.15,211.48 50.63,209.50 50.99,208.17C51.36,206.84 51.88,204.70 52.17,203.42C52.81,200.53 52.80,200.55 55.01,193.33C58.86,180.76 60.29,177.21 62.95,173.70C70.73,163.41 81.85,151.54 92.92,141.73C98.51,136.76 98.92,136.27 98.42,135.06C98.01,134.08 97.10,133.58 91.42,131.22C87.26,129.48 87.33,129.55 87.33,127.52C87.33,125.70 87.80,124.85 91.05,120.68C91.81,119.71 93.23,117.83 94.20,116.50C97.13,112.50 106.03,102.52 107.90,101.14C108.95,100.37 110.92,100.44 113.02,101.32C115.80,102.48 120.97,104.96 125.67,107.38C133.96,111.65 133.03,111.25 134.57,111.25C135.79,111.25 136.03,111.19 137.08,110.65C148.68,104.72 153.43,102.46 160.00,99.75C161.60,99.08 164.00,98.09 165.33,97.54C169.99,95.60 180.55,91.95 185.50,90.56C186.65,90.24 188.62,89.64 189.90,89.24C192.38,88.44 195.10,87.73 201.33,86.24C223.82,80.87 245.61,78.19 270.46,77.73C276.50,77.61 276.50,77.61 276.92,78.00C277.33,78.39 277.33,78.39 277.33,95.43C277.33,114.24 277.41,112.89 276.29,113.07C275.99,113.12 272.97,113.19 269.58,113.23C255.23,113.41 235.29,115.49 222.58,118.15C212.84,120.19 210.16,120.80 207.08,121.66C205.16,122.20 201.90,123.11 199.83,123.67C195.49,124.86 185.48,128.19 182.08,129.57C167.50,135.49 167.84,134.92 174.97,141.35C187.81,152.92 202.97,169.99 205.42,175.63C207.11,179.52 212.15,195.88 213.70,202.50C214.05,204.01 214.63,206.38 215.00,207.75C215.36,209.12 215.81,211.19 216.00,212.33C216.19,213.48 216.60,215.62 216.91,217.08C217.58,220.21 218.20,223.80 218.75,227.75C218.97,229.31 219.31,231.33 219.50,232.24C219.68,233.15 219.92,234.80 220.01,235.91C220.11,237.01 220.33,238.97 220.50,240.25C220.67,241.53 220.86,243.30 220.92,244.17C220.98,245.04 221.18,246.82 221.35,248.13C221.68,250.66 221.89,253.57 222.17,259.67C222.26,261.73 222.41,264.84 222.49,266.58C222.72,271.40 222.87,292.81 222.74,302.00L222.62,310.17L221.16,310.17L219.71,310.17L219.34,307.79C209.88,246.16 183.61,195.94 143.25,162.33C134.16,154.76 134.69,154.84 128.00,160.06C87.54,191.69 59.73,239.66 48.34,297.50C47.72,300.66 46.88,305.14 46.48,307.46L45.75,311.67L44.31,311.67L42.87,311.67L42.75,308.57ZM41.00,116.99C32.82,115.60 22.96,114.44 14.17,113.83C5.63,113.24 4.47,113.17 2.21,113.17L0.00,113.17L0.00,95.47L0.00,77.78L5.21,77.89C22.79,78.28 42.79,80.64 60.42,84.41C68.52,86.15 68.17,85.98 68.17,88.13C68.17,89.95 68.42,89.50 65.24,93.36C63.02,96.04 56.79,104.43 54.78,107.42C49.08,115.92 48.47,116.74 47.47,117.26C46.76,117.63 44.13,117.52 41.00,116.99Z"/></svg><span class="bt"><b class="l1">Pôle culturel &amp; touristique</b><b class="l2">des Augustins</b></span></a>
-  <nav class="main" id="nav" aria-label="Menu principal"><ul><li><a href="augustins-le-pole.html"><span data-i18n="nav.pole">Le Pôle</span></a></li><li><a href="augustins-agenda.html"><span data-i18n="nav.prog">Programmation</span></a></li><li><a href="augustins-agenda.html#cal"><span data-i18n="nav.agenda">Agenda</span></a></li><li><a href="#galerie"><span data-i18n="nav.galerie">Galerie</span></a></li><li><a href="#infos"><span data-i18n="nav.infos">Infos pratiques</span></a></li><li class="m-lang"><div class="lang" role="group" aria-label="Langue"><button aria-pressed="true" data-lang="fr">Français</button><button aria-pressed="false" data-lang="en">English</button><button aria-pressed="false" data-lang="es">Español</button></div></li></ul></nav>
-  <div class="tools">
-    <button class="icon-btn" data-search aria-label="Rechercher"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
-    <div class="lang" role="group" aria-label="Langue"><button aria-pressed="true" data-lang="fr">FR</button><button aria-pressed="false" data-lang="en">EN</button><button aria-pressed="false" data-lang="es">ES</button></div>
-    <button class="icon-btn burger" data-burger aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
-  </div>
-</div></header>
-<div class="search" id="search" role="dialog" aria-modal="true" aria-label="Recherche"><div class="box">
-  <div class="field"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" placeholder="Un événement, un espace, une info…" data-i18n-ph="search.ph" aria-label="Rechercher"><button class="icon-btn" data-close aria-label="Fermer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-  <div class="chips"><button class="chip" data-q="Before">Before</button><button class="chip" data-q="Fab Lab">Fab Lab</button><button class="chip" data-q="horaires">Horaires</button><button class="chip" data-q="jazz">Jazz</button><button class="chip" data-q="tarifs">Tarifs</button></div>
-  <div class="res" role="list"></div>
-  <p class="hint"><span data-i18n="search.hint">Résultats instantanés sur tout le site, y compris les documents PDF.</span></p>
-</div></div>
-<main id="main">
 
-<section class="hero2">
-  <svg class="ribbon" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
-    <linearGradient id="rg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#D9845A"/><stop offset=".45" stop-color="#EDB08C"/><stop offset=".75" stop-color="#E9A584"/><stop offset="1" stop-color="#C9704E"/></linearGradient>
-    <filter id="rb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter></defs>
-    <path class="rib" d="M-120,820 C40,330 250,70 470,70 C720,70 770,640 1010,640 C1210,640 1330,400 1580,170" fill="none" stroke="url(#rg)" stroke-width="170" stroke-linecap="round" filter="url(#rb)"/>
-  </svg>
-  <div class="wrap">
-    <a class="pill-next" href="augustins-evenement.html"><span class="d"><b>13</b> nov.</span><span><span class="pn"><span data-i18n="hero.next">Prochain rendez-vous</span> · </span><b>Le Before des Augustins</b></span><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <h1><span data-i18n="hero.a">Un couvent,</span><br><span data-i18n="hero.b">neuf univers.</span><span class="it" data-i18n="hero.c">le jazz en fil rouge</span></h1>
-    <p class="lead"><span class="long"><span data-i18n="hero.lead">Au cœur de la bastide, l'ancien couvent des Augustins vit toute l'année : musée du jazz, film immersif, Micro-Folie, Fab Lab, artistes en résidence, dégustations et conseils pour votre séjour.</span></span><span class="court"><span data-i18n="hero.lead.s">Musée du jazz, film immersif, Micro-Folie, Fab Lab et dégustations, toute l'année au cœur de la bastide.</span></span></p>
-    <form class="hsearch" data-hero-search role="search"><label class="sr" for="hq">Rechercher</label><input id="hq" type="text" placeholder="Un concert, un atelier, une visite…" data-i18n-ph="hero.sph"><button class="btn btn-bx" type="submit" aria-label="Rechercher"><span class="bl"><span data-i18n="hero.sbtn">Rechercher</span></span> <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span></button></form>
-    <div class="hchips" id="hchips"><a class="hchip" href="augustins-agenda.html?cat=spectacle" style="--c:var(--c-spectacle)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><span data-i18n="c.spectacle">Concerts & spectacles</span></a><a class="hchip" href="augustins-agenda.html?cat=expo" style="--c:var(--c-expo)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg><span data-i18n="c.expo">Expositions</span></a><a class="hchip" href="augustins-agenda.html?cat=atelier" style="--c:var(--c-atelier)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4Z"/></svg><span data-i18n="c.atelier">Ateliers & stages</span></a><a class="hchip" href="augustins-agenda.html?cat=projection" style="--c:var(--c-projection)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9h4M3 15h4M17 9h4M17 15h4"/></svg><span data-i18n="c.projection">Cinéma</span></a><a class="hchip" href="augustins-agenda.html?cat=degustation" style="--c:var(--c-degustation)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-1 7a4 4 0 0 1-8 0Z"/><path d="M12 14v7M8 21h8"/></svg><span data-i18n="c.degustation">Dégustations & terroir</span></a><a class="hchip" href="augustins-agenda.html?cat=visite" style="--c:var(--c-visite)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/></svg><span data-i18n="c.visite">Visites & médiation</span></a><a class="hchip" href="augustins-agenda.html?cat=residence" style="--c:var(--c-residence)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 1.7-.8 1.7-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2Z"/><circle cx="7.5" cy="11" r="1" fill="currentColor"/><circle cx="10" cy="7" r="1" fill="currentColor"/><circle cx="15" cy="7" r="1" fill="currentColor"/></svg><span data-i18n="c.residence">Résidences</span></a></div>
-    <div class="hbar" aria-hidden="true"><i></i></div>
-  </div>
-</section>
-<nav class="quick" aria-label="Accès rapides"><div class="wrap" style="padding:0"><ul>
-  <li><a href="augustins-agenda.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span><b><span data-i18n="q.agenda">L'agenda</span></b><small><span data-i18n="q.agenda.s">Tous les rendez-vous</span></small></span></a></li>
-  <li><a href="#infos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg><span><b><span data-i18n="q.visit">Préparer ma visite</span></b><small><span data-i18n="q.visit.s">Accès, horaires, tarifs</span></small></span></a></li>
-  <li><a href="#jim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><span><b><span data-i18n="q.jim">Jazz in Marciac</span> <svg class="lk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b><small><span data-i18n="q.jim.s">Le festival de l'été</span></small></span></a></li>
-  <li><a href="#ot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.6"/></svg><span><b><span data-i18n="q.ot">Office de Tourisme</span> <svg class="lk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b><small><span data-i18n="q.ot.s">Séjours et hébergements</span></small></span></a></li>
-</ul></div></nav>
+<div class="page">
+  <header class="topbar wrap">
+    <a class="brand" href="../">Mathis Dufour</a>
+    <a class="site-link" href="../">← Retour</a>
+  </header>
 
-<section class="sec"><div class="wrap">
-  <div class="sec-head"><div><p class="eyebrow">Programmation</p><h2 style="margin-top:12px"><span data-i18n="s.aff">À l'affiche</span> <span class="it" data-i18n="s.aff.it">ces prochaines semaines</span></h2></div>
-  <div><p style="margin-bottom:16px"><span data-i18n="s.aff.p">Concerts, ateliers, projections, dégustations : tout ce qui se passe aux Augustins, mis à jour par l'équipe du Pôle.</span></p><a class="more" href="augustins-agenda.html"><span data-i18n="more.agenda">Tout l'agenda</span> <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
-  <div class="cards" id="c-aff"><a class="card rv" href="augustins-evenement.html" data-cat="degustation">
-  <div class="pic"><img class="" src="img/table-ronde.jpg" alt="" loading="lazy"><span class="credit">DR</span><div class="date"><small>Ven.</small><b>13</b><small>nov.</small></div></div>
-  <div class="body"><span class="cat" style="--c:var(--c-degustation)" data-i18n="c.degustation">Dégustations & terroir</span><h3>Le Before des Augustins : Saint-Mont, vignes et paysages</h3><p class="meta">18h30 · Cloître des Augustins</p></div></a><a class="card rv" href="augustins-evenement.html" data-cat="atelier">
-  <div class="pic"><div class="ph "><span>Photo du Fab Lab<small>prévue ici · fournie par la commune</small></span></div><div class="date"><small>Sam.</small><b>14</b><small>nov.</small></div></div>
-  <div class="body"><span class="cat" style="--c:var(--c-atelier)" data-i18n="c.atelier">Ateliers & stages</span><h3>Atelier impression 3D : fabrique ton instrument de jazz</h3><p class="meta">14h00 · Fab Lab</p></div></a><a class="card rv" href="augustins-evenement.html" data-cat="projection">
-  <div class="pic"><img class="" src="img/cinejim.jpg" alt="" loading="lazy"><span class="credit">© OT Cœur Sud-Ouest</span><div class="date"><small>Jeu.</small><b>19</b><small>nov.</small></div></div>
-  <div class="body"><span class="cat" style="--c:var(--c-projection)" data-i18n="c.projection">Cinéma</span><h3>Ciné-débat : jazz et cinéma</h3><p class="meta">20h30 · CinéJim 32</p></div></a><a class="card rv" href="augustins-evenement.html" data-cat="spectacle">
-  <div class="pic"><img class="" src="img/film-place.jpg" alt="" loading="lazy"><span class="credit">© OT Cœur Sud-Ouest</span><div class="date"><small>Ven.</small><b>27</b><small>nov.</small></div></div>
-  <div class="body"><span class="cat" style="--c:var(--c-spectacle)" data-i18n="c.spectacle">Concerts & spectacles</span><h3>Jazz au cloître : trio en concert</h3><p class="meta">19h00 · Cloître des Augustins</p></div></a></div><div class="m-nav" data-for="#c-aff"><button class="m-btn" data-dir="-1" aria-label="Précédent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button><div class="m-dots"><i></i><i></i><i></i><i></i></div><button class="m-btn" data-dir="1" aria-label="Suivant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></div>
-</div></section>
+  <main class="wrap">
+    <section class="intro">
+      <h1>Les Augustins<br />Marciac</h1>
+      <p>Maquettes du site du Pôle culturel et touristique des Augustins : quatre pages navigables, sur ordinateur et <span class="nowrap">sur mobile</span>.</p>
+    </section>
 
-<section class="sec univers" id="univers"><div class="wrap">
-  <div class="sec-head"><div><p class="eyebrow" style="color:var(--or)">Le Pôle</p><h2 style="margin-top:12px"><span data-i18n="s.uni">Neuf univers</span> <span class="it" style="color:var(--or)" data-i18n="s.uni.it">sous un même toit</span></h2></div><p><span data-i18n="s.uni.p">Du musée du jazz au Fab Lab, chaque espace a son caractère. Survolez-les pour les découvrir.</span></p></div>
-  <div class="grid">
-    <ol role="tablist" aria-label="Les univers du Pôle"><li><button role="tab" aria-selected="true" data-u="0"><span class="n">01</span><span class="t" data-i18n="u.accueil.t">Accueil & conseil en séjour</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li><li><button role="tab" aria-selected="false" data-u="1"><span class="n">02</span><span class="t" data-i18n="u.boutique.t">Boutique & dégustation</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li><li><button role="tab" aria-selected="false" data-u="2"><span class="n">03</span><span class="t" data-i18n="u.vitrine.t">Vitrine du Val d'Adour</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li><li><button role="tab" aria-selected="false" data-u="3"><span class="n">04</span><span class="t" data-i18n="u.immersif.t">Espace immersif</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li><li><button role="tab" aria-selected="false" data-u="4"><span class="n">05</span><span class="t" data-i18n="u.musee.t">Musée des Territoires du Jazz</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li><li><button role="tab" aria-selected="false" data-u="5"><span class="n">06</span><span class="t" data-i18n="u.cabinet.t">Cabinet de curiosités</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li><li><button role="tab" aria-selected="false" data-u="6"><span class="n">07</span><span class="t" data-i18n="u.microfolie.t">Micro-Folie</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li><li><button role="tab" aria-selected="false" data-u="7"><span class="n">08</span><span class="t" data-i18n="u.fablab.t">Fab Lab</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li><li><button role="tab" aria-selected="false" data-u="8"><span class="n">09</span><span class="t" data-i18n="u.art.t">Art contemporain & résidences</span><span class="ar"><svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></li></ol>
-    <div class="uni-m" id="c-uni"><a class="um" href="augustins-le-pole.html#accueil"><div class="pic"><img class="" src="img/accueil.jpg" alt="" loading="lazy"><span class="credit">© OT Cœur Sud-Ouest</span></div><span class="n">01</span><h3 data-i18n="u.accueil.t">Accueil & conseil en séjour</h3><p data-i18n="u.accueil.d">Les conseillers de l'Office de Tourisme Cœur Sud-Ouest préparent votre séjour avec vous, réservent vos concerts de Jazz in Marciac et vous orientent dans le Val d'Adour.</p></a><a class="um" href="augustins-le-pole.html#boutique"><div class="pic"><img class="" src="img/boutique.jpg" alt="" loading="lazy"><span class="credit">© OT Cœur Sud-Ouest</span></div><span class="n">02</span><h3 data-i18n="u.boutique.t">Boutique & dégustation</h3><p data-i18n="u.boutique.d">Confitures, artisanat du bois, vins de Madiran et de Saint-Mont : le meilleur du territoire, à goûter sur place avant de l'emporter.</p></a><a class="um" href="augustins-le-pole.html#vitrine"><div class="pic"><img class="" src="img/film-vignes.jpg" alt="" loading="lazy"><span class="credit">© OT Cœur Sud-Ouest</span></div><span class="n">03</span><h3 data-i18n="u.vitrine.t">Vitrine du Val d'Adour</h3><p data-i18n="u.vitrine.d">Paysages, vignobles, savoir-faire : le Pays du Val d'Adour se dévoile ici avant que vous partiez l'explorer.</p></a><a class="um" href="augustins-le-pole.html#immersif"><div class="pic"><img class="" src="img/espace-immersif.jpg" alt="" loading="lazy"><span class="credit">© OT Cœur Sud-Ouest</span></div><span class="n">04</span><h3 data-i18n="u.immersif.t">Espace immersif</h3><p data-i18n="u.immersif.d">Vingt minutes dans un film d'animation projeté tout autour de vous, aux côtés de Marceau et Marcy, deux passionnés de jazz, de la bastide jusqu'à La Nouvelle-Orléans.</p></a><a class="um" href="augustins-le-pole.html#musee"><div class="pic"><div class="ph "><span>Photo du musée des Territoires du Jazz<small>prévue ici · fournie par la commune</small></span></div></div><span class="n">05</span><h3 data-i18n="u.musee.t">Musée des Territoires du Jazz</h3><p data-i18n="u.musee.d">Douze décors pour remonter le fil du jazz, de ses racines africaines aux clubs de New York.</p></a><a class="um" href="augustins-le-pole.html#cabinet"><div class="pic"><div class="ph "><span>Photo du cabinet de curiosités<small>prévue ici · fournie par la commune</small></span></div></div><span class="n">06</span><h3 data-i18n="u.cabinet.t">Cabinet de curiosités</h3><p data-i18n="u.cabinet.d">Affiches, photographies, souvenirs d'artistes et enregistrements : la mémoire du jazz à Marciac, autour d'une maquette de la bastide.</p></a><a class="um" href="augustins-le-pole.html#microfolie"><div class="pic"><div class="ph "><span>Photo de la Micro-Folie<small>prévue ici · fournie par la commune</small></span></div></div><span class="n">07</span><h3 data-i18n="u.microfolie.t">Micro-Folie</h3><p data-i18n="u.microfolie.d">Un musée numérique gratuit : plus de 5 000 chefs-d'œuvre du Louvre, d'Orsay ou du Centre Pompidou, avec des ateliers et des rencontres.</p></a><a class="um" href="augustins-le-pole.html#fablab"><div class="pic"><div class="ph "><span>Photo du Fab Lab<small>prévue ici · fournie par la commune</small></span></div></div><span class="n">08</span><h3 data-i18n="u.fablab.t">Fab Lab</h3><p data-i18n="u.fablab.d">Imprimantes 3D, découpe laser, robots : un atelier de fabrication ouvert aux curieux, aux écoles et aux porteurs de projets.</p></a><a class="um" href="augustins-le-pole.html#art"><div class="pic"><div class="ph "><span>Photo de l'espace d'art contemporain<small>prévue ici · fournie par la commune</small></span></div></div><span class="n">09</span><h3 data-i18n="u.art.t">Art contemporain & résidences</h3><p data-i18n="u.art.d">Un espace de travail partagé pour les artistes en résidence : on y crée à Marciac, et le public les rencontre à chaque sortie de résidence.</p></a></div><div class="m-nav" data-for="#c-uni"><button class="m-btn" data-dir="-1" aria-label="Précédent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button><div class="m-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><button class="m-btn" data-dir="1" aria-label="Suivant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></div>
-    <div class="show"><div class="window"><img data-ui="0" class="on" src="img/accueil.jpg" alt="Accueil & conseil en séjour" loading="lazy"><img data-ui="1" class="" src="img/boutique.jpg" alt="Boutique & dégustation" loading="lazy"><img data-ui="2" class="" src="img/film-vignes.jpg" alt="Vitrine du Val d'Adour" loading="lazy"><img data-ui="3" class="" src="img/espace-immersif.jpg" alt="Espace immersif" loading="lazy"><div data-ui="4" class="ph "><span>Photo du musée des Territoires du Jazz<small>prévue ici · fournie par la commune</small></span></div><div data-ui="5" class="ph "><span>Photo du cabinet de curiosités<small>prévue ici · fournie par la commune</small></span></div><div data-ui="6" class="ph "><span>Photo de la Micro-Folie<small>prévue ici · fournie par la commune</small></span></div><div data-ui="7" class="ph "><span>Photo du Fab Lab<small>prévue ici · fournie par la commune</small></span></div><div data-ui="8" class="ph "><span>Photo de l'espace d'art contemporain<small>prévue ici · fournie par la commune</small></span></div></div>
-      <div class="cap" aria-live="polite"><h3 data-cap-t data-i18n="u.accueil.t">Accueil & conseil en séjour</h3><p data-cap-d data-i18n="u.accueil.d">Les conseillers de l'Office de Tourisme Cœur Sud-Ouest préparent votre séjour avec vous, réservent vos concerts de Jazz in Marciac et vous orientent dans le Val d'Adour.</p><div class="tags" data-cap-tags><span class="tag">Accès libre</span><span class="tag">Billetterie concerts</span></div></div>
-    </div>
-  </div>
-  <p style="margin-top:80px"><a class="btn btn-line" style="color:var(--blanc)" href="augustins-le-pole.html"><span data-i18n="more.pole">Découvrir le Pôle</span> <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
-</div><svg class="ring" viewBox="0 0 280 428" aria-hidden="true" focusable="false" ><path fill="#F6EFE4" d="M5.36,423.44C4.64,423.12 4.67,425.50 4.67,348.45C4.67,269.36 4.71,264.05 5.49,255.25C5.67,253.23 5.90,250.35 6.00,248.83C6.10,247.32 6.29,245.30 6.43,244.33C6.56,243.37 6.82,241.05 7.01,239.19C7.19,237.32 7.41,235.48 7.49,235.10C7.57,234.72 7.76,233.40 7.91,232.17C8.05,230.93 8.32,229.05 8.50,228.00C8.68,226.95 9.10,224.43 9.43,222.42C14.12,193.76 23.58,164.16 36.03,139.26C41.26,128.81 47.80,117.52 52.61,110.64C53.55,109.30 54.87,107.35 55.54,106.31C57.28,103.64 63.79,95.10 67.40,90.75C75.11,81.46 84.90,71.40 93.92,63.50C100.01,58.17 100.05,57.64 94.55,55.23C68.96,44.03 34.49,36.66 4.88,36.05L0.00,35.95L0.00,17.97L0.00,0.00L2.14,0.00C3.62,0.00 4.43,0.07 4.77,0.23C5.65,0.65 9.00,0.73 9.00,0.32C9.00,-0.15 16.94,-0.10 18.14,0.38C19.19,0.80 23.06,1.45 27.35,1.91C64.54,5.90 96.34,14.97 125.17,29.79C133.71,34.19 133.07,33.89 134.26,33.97C135.66,34.06 135.99,33.93 140.69,31.46C171.13,15.49 203.76,6.12 244.08,1.75C247.42,1.39 251.09,0.76 252.01,0.39C252.69,0.11 253.65,0.08 264.85,0.04L276.96,-0.00L277.15,0.74C277.53,2.26 277.40,34.87 277.01,35.37C276.68,35.79 276.68,35.79 270.38,35.90C237.57,36.50 207.05,42.37 179.17,53.45C168.65,57.63 168.32,58.11 173.12,62.33C181.47,69.69 193.75,82.28 195.15,84.91C196.32,87.13 195.02,87.89 185.50,90.56C180.57,91.95 170.18,95.54 165.17,97.59C159.29,100.01 159.65,100.09 154.19,94.86C148.62,89.52 143.90,85.39 138.85,81.43C134.73,78.21 134.02,78.18 130.20,81.05C117.93,90.27 101.63,106.36 93.98,116.79C92.89,118.27 91.40,120.26 90.66,121.20C89.03,123.30 83.16,131.93 80.84,135.65C72.85,148.46 65.24,164.09 60.13,178.17C57.55,185.30 56.69,187.84 55.01,193.33C52.80,200.55 52.81,200.53 52.17,203.42C51.88,204.70 51.36,206.84 50.99,208.17C50.63,209.50 50.15,211.48 49.93,212.58C49.70,213.68 49.29,215.52 49.02,216.67C48.74,217.81 48.29,220.10 48.01,221.75C47.73,223.40 47.21,226.42 46.84,228.45C46.48,230.49 46.06,233.26 45.91,234.62C45.77,235.97 45.47,238.17 45.25,239.50C44.89,241.65 44.19,248.09 43.92,251.75C43.86,252.48 43.71,254.17 43.58,255.50C42.75,263.79 42.75,263.49 42.75,344.83C42.75,428.32 42.84,421.69 41.72,422.67C41.42,422.93 40.89,423.23 40.54,423.32C39.76,423.53 5.82,423.65 5.36,423.44ZM224.75,423.25C223.86,422.93 223.24,422.21 223.03,421.23C222.89,420.58 222.78,342.08 222.89,327.00C222.95,318.69 222.64,268.58 222.52,266.42C222.43,264.95 222.28,261.99 222.18,259.83C221.89,253.54 221.68,250.68 221.35,248.13C221.18,246.82 220.98,245.04 220.92,244.17C220.86,243.30 220.67,241.53 220.50,240.25C220.33,238.97 220.11,237.01 220.01,235.91C219.92,234.80 219.68,233.15 219.50,232.24C219.31,231.33 218.97,229.31 218.75,227.75C218.20,223.80 217.58,220.21 216.91,217.08C216.60,215.62 216.19,213.48 216.00,212.33C215.81,211.19 215.36,209.12 215.00,207.75C214.63,206.38 214.05,204.01 213.70,202.50C211.46,192.91 206.31,177.18 201.99,166.72C197.57,156.00 192.55,146.01 186.42,135.73C182.44,129.05 182.37,129.18 191.85,126.10C194.55,125.23 198.29,124.09 200.17,123.58C202.05,123.06 205.16,122.20 207.09,121.66C213.23,119.93 217.68,119.13 219.05,119.51C220.81,120.00 223.07,123.69 229.40,136.33C248.73,174.99 258.50,216.31 260.67,268.58C260.90,274.25 260.89,420.53 260.66,421.38C260.40,422.32 259.63,423.09 258.76,423.31C257.55,423.62 225.62,423.56 224.75,423.25Z"/><path fill="#E3A84B" d="M42.75,308.57C42.33,298.10 42.89,262.34 43.58,255.50C43.71,254.17 43.86,252.48 43.92,251.75C44.19,248.09 44.89,241.65 45.25,239.50C45.47,238.17 45.77,235.97 45.91,234.62C46.06,233.26 46.48,230.49 46.84,228.45C47.21,226.42 47.73,223.40 48.01,221.75C48.29,220.10 48.74,217.81 49.02,216.67C49.29,215.52 49.70,213.68 49.93,212.58C50.15,211.48 50.63,209.50 50.99,208.17C51.36,206.84 51.88,204.70 52.17,203.42C52.81,200.53 52.80,200.55 55.01,193.33C58.86,180.76 60.29,177.21 62.95,173.70C70.73,163.41 81.85,151.54 92.92,141.73C98.51,136.76 98.92,136.27 98.42,135.06C98.01,134.08 97.10,133.58 91.42,131.22C87.26,129.48 87.33,129.55 87.33,127.52C87.33,125.70 87.80,124.85 91.05,120.68C91.81,119.71 93.23,117.83 94.20,116.50C97.13,112.50 106.03,102.52 107.90,101.14C108.95,100.37 110.92,100.44 113.02,101.32C115.80,102.48 120.97,104.96 125.67,107.38C133.96,111.65 133.03,111.25 134.57,111.25C135.79,111.25 136.03,111.19 137.08,110.65C148.68,104.72 153.43,102.46 160.00,99.75C161.60,99.08 164.00,98.09 165.33,97.54C169.99,95.60 180.55,91.95 185.50,90.56C186.65,90.24 188.62,89.64 189.90,89.24C192.38,88.44 195.10,87.73 201.33,86.24C223.82,80.87 245.61,78.19 270.46,77.73C276.50,77.61 276.50,77.61 276.92,78.00C277.33,78.39 277.33,78.39 277.33,95.43C277.33,114.24 277.41,112.89 276.29,113.07C275.99,113.12 272.97,113.19 269.58,113.23C255.23,113.41 235.29,115.49 222.58,118.15C212.84,120.19 210.16,120.80 207.08,121.66C205.16,122.20 201.90,123.11 199.83,123.67C195.49,124.86 185.48,128.19 182.08,129.57C167.50,135.49 167.84,134.92 174.97,141.35C187.81,152.92 202.97,169.99 205.42,175.63C207.11,179.52 212.15,195.88 213.70,202.50C214.05,204.01 214.63,206.38 215.00,207.75C215.36,209.12 215.81,211.19 216.00,212.33C216.19,213.48 216.60,215.62 216.91,217.08C217.58,220.21 218.20,223.80 218.75,227.75C218.97,229.31 219.31,231.33 219.50,232.24C219.68,233.15 219.92,234.80 220.01,235.91C220.11,237.01 220.33,238.97 220.50,240.25C220.67,241.53 220.86,243.30 220.92,244.17C220.98,245.04 221.18,246.82 221.35,248.13C221.68,250.66 221.89,253.57 222.17,259.67C222.26,261.73 222.41,264.84 222.49,266.58C222.72,271.40 222.87,292.81 222.74,302.00L222.62,310.17L221.16,310.17L219.71,310.17L219.34,307.79C209.88,246.16 183.61,195.94 143.25,162.33C134.16,154.76 134.69,154.84 128.00,160.06C87.54,191.69 59.73,239.66 48.34,297.50C47.72,300.66 46.88,305.14 46.48,307.46L45.75,311.67L44.31,311.67L42.87,311.67L42.75,308.57ZM41.00,116.99C32.82,115.60 22.96,114.44 14.17,113.83C5.63,113.24 4.47,113.17 2.21,113.17L0.00,113.17L0.00,95.47L0.00,77.78L5.21,77.89C22.79,78.28 42.79,80.64 60.42,84.41C68.52,86.15 68.17,85.98 68.17,88.13C68.17,89.95 68.42,89.50 65.24,93.36C63.02,96.04 56.79,104.43 54.78,107.42C49.08,115.92 48.47,116.74 47.47,117.26C46.76,117.63 44.13,117.52 41.00,116.99Z"/></svg>
-<script>window.UNI=[{"k": "accueil", "tags": ["Accès libre", "Billetterie concerts"], "credit": "© OT Cœur Sud-Ouest"}, {"k": "boutique", "tags": ["Produits locaux", "Dégustations"], "credit": "© OT Cœur Sud-Ouest"}, {"k": "vitrine", "tags": ["Destination Cœur Sud-Ouest"], "credit": "© OT Cœur Sud-Ouest"}, {"k": "immersif", "tags": ["Environ 20 min", "Tout public"], "credit": "© OT Cœur Sud-Ouest"}, {"k": "musee", "tags": ["12 décors"], "credit": ""}, {"k": "cabinet", "tags": ["Collections"], "credit": ""}, {"k": "microfolie", "tags": ["Gratuit", "Réseau La Villette"], "credit": ""}, {"k": "fablab", "tags": ["Ateliers", "Scolaires"], "credit": ""}, {"k": "art", "tags": ["Coworking artistes", "Appel à résidence"], "credit": ""}];</script></section>
+    <ul class="grid">
+      <li>
+        <article class="card">
+          <span class="frame-name"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 1v10M8 1v10M1 4h10M1 8h10"/></svg>Page d'accueil</span>
+          <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
+          <div class="browser"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <picture class="shot">
+              <img src="vignettes/accueil.webp" width="1440" height="900" alt="Haut de la page Accueil" fetchpriority="high" />
+            </picture>
+          </div>
+          <h2><a href="augustins-accueil.html" target="_blank" rel="noopener">Accueil<span class="sr-only"> (nouvel onglet)</span></a></h2>
+          <p>Un couvent, neuf univers : recherche interne, accès par type de sortie, Before du mois et visite à 360°.</p>
+          <div class="chips"><span class="chip">Recherche</span><span class="chip">Trilingue</span><span class="chip">Newsletter</span><span class="site-link" aria-hidden="true">Voir la page</span></div>
+        </article>
+      </li>
+      <li>
+        <article class="card">
+          <span class="frame-name"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 1v10M8 1v10M1 4h10M1 8h10"/></svg>Agenda</span>
+          <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
+          <div class="browser"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <picture class="shot">
+              <img src="vignettes/agenda.webp" width="1440" height="900" alt="Haut de la page Agenda" />
+            </picture>
+          </div>
+          <h2><a href="augustins-agenda.html" target="_blank" rel="noopener">Agenda<span class="sr-only"> (nouvel onglet)</span></a></h2>
+          <p>La programmation filtrable par catégorie, par public et par date, avec un calendrier dynamique.</p>
+          <div class="chips"><span class="chip">Calendrier</span><span class="chip">Filtres</span><span class="chip">iCal</span><span class="site-link" aria-hidden="true">Voir la page</span></div>
+        </article>
+      </li>
+      <li>
+        <article class="card">
+          <span class="frame-name"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 1v10M8 1v10M1 4h10M1 8h10"/></svg>Fiche événement</span>
+          <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
+          <div class="browser"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <picture class="shot">
+              <img src="vignettes/evenement.webp" width="1440" height="900" alt="Haut de la page Le Before des Augustins" loading="lazy" />
+            </picture>
+          </div>
+          <h2><a href="augustins-evenement.html" target="_blank" rel="noopener">Le Before des Augustins<span class="sr-only"> (nouvel onglet)</span></a></h2>
+          <p>Le programme de la soirée heure par heure, la réservation, l'ajout à l'agenda et le partage.</p>
+          <div class="chips"><span class="chip">Réservation</span><span class="chip">Programme</span><span class="chip">Partage</span><span class="site-link" aria-hidden="true">Voir la page</span></div>
+        </article>
+      </li>
+      <li>
+        <article class="card">
+          <span class="frame-name"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 1v10M8 1v10M1 4h10M1 8h10"/></svg>Le Pôle</span>
+          <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
+          <div class="browser"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <picture class="shot">
+              <img src="vignettes/le-pole.webp" width="1440" height="900" alt="Haut de la page Le Pôle" loading="lazy" />
+            </picture>
+          </div>
+          <h2><a href="augustins-le-pole.html" target="_blank" rel="noopener">Le Pôle<span class="sr-only"> (nouvel onglet)</span></a></h2>
+          <p>Le lieu, ses quatre partenaires et ses neuf univers, chacun avec ses horaires, son accès et son accessibilité.</p>
+          <div class="chips"><span class="chip">Univers</span><span class="chip">360°</span><span class="chip">Partenaires</span><span class="site-link" aria-hidden="true">Voir la page</span></div>
+        </article>
+      </li>
+    </ul>
+  </main>
 
-<section class="sec before"><div class="wrap grid">
-  <div class="rv"><img class="logo-b" src="img/before-logo.png" alt="Le Before des Augustins">
-    <p class="eyebrow" style="margin-top:22px"><span data-i18n="s.bef.e">Chaque mois</span></p>
-    <h2><span data-i18n="s.bef.h">Le Before des Augustins</span></h2><p><span data-i18n="s.bef.p">Un territoire à l'honneur, des vignerons et producteurs qui racontent leur métier en le faisant goûter, puis un concert ou une projection pour finir la soirée.</span></p>
-    <ol class="steps"><li><b>18h30</b><span>Accueil dans le cloître et table ronde du mois</span></li><li><b>19h30</b><span>Dégustation avec les vignerons et producteurs invités</span></li><li><b>20h45</b><span>Concert ou projection au CinéJim 32</span></li></ol>
-    <a class="btn btn-bx" href="augustins-evenement.html"><span data-i18n="s.bef.btn">Réserver le prochain Before</span> <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  <div class="photos rv"><div class="a"><img class="" src="img/table-ronde.jpg" alt="Table ronde aux Augustins" loading="lazy"></div><div class="b"><img class="" src="img/visite-groupe.jpg" alt="Visite de groupe" loading="lazy"></div><span class="credit">DR · © Tourisme Gers</span></div>
-</div></section>
+  <footer class="footer wrap">
+    <a class="email-pill" href="mailto:mathis@mathisdufour.com">mathis@mathisdufour.com</a>
+    <p class="credit">Textes et photographies issus de sources publiques (Office de Tourisme Cœur Sud-Ouest, Tourisme Gers, La Dépêche), droits réservés à leurs auteurs.</p>
+  </footer>
+</div>
 
-<section class="sec"><div class="wrap">
-  <div class="sec-head"><h2><span data-i18n="s.news">Actualités</span></h2><a class="more" href="#actus"><span data-i18n="more.news">Toutes les actualités</span> <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  <div class="news">
-    <a class="big rv" href="#a1"><div class="pic"><img class="" src="img/film-cloitre.jpg" alt="" loading="lazy"><span class="credit">© OT Cœur Sud-Ouest</span></div><time>Publié le 2 novembre 2026</time><h3>Le site des Augustins parle désormais anglais et espagnol</h3><p style="color:var(--gris)">Festivaliers anglais, familles espagnoles, voisins du Val d'Adour : tout le site est maintenant disponible en trois langues.</p></a>
-    <div class="side">
-      <a class="rv" href="#a2"><div class="pic"><div class="ph "><span>Visuel de l'appel à résidence<small>prévue ici · fournie par la commune</small></span></div></div><div><time>Publié le 28 octobre 2026</time><h3>Appel à résidence 2027 : artistes, à vos dossiers</h3></div></a>
-      <a class="rv" href="#a3"><div class="pic"><img class="" src="img/facade.jpg" alt="" loading="lazy"><span class="credit">DR</span></div><div><time>Publié le 20 octobre 2026</time><h3>Horaires d'hiver du Pôle à partir du 1er novembre</h3><p style="font-size:14px;color:var(--gris)">Nouveaux horaires : <span class="tbd">prévus ici</span></p></div></a>
-    </div>
-  </div>
-</div></section>
-
-<section class="sec v360" id="galerie"><div class="wrap grid">
-  <div><p class="eyebrow" style="color:var(--or)"><span data-i18n="s.360.e">Visite virtuelle</span></p><h2><span data-i18n="s.360.h">Entrez dans le cloître avant même de venir</span></h2><p><span data-i18n="s.360.p">Les visites à 360° fournies par la commune s'intègrent dans chaque page d'espace et se gèrent depuis l'administration, comme une simple image.</span></p>
-   <p style="margin-top:26px"><a class="btn btn-line" style="color:var(--blanc)" href="#galerie">Galerie photos et vidéos <svg class="ar" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p></div>
-  <div class="viewer rv"><img src="img/film-cloitre.jpg" alt="" loading="lazy"><div class="ui">
-    <div class="row"><span class="pill">360° · Le cloître</span><span class="pill">⤢ Plein écran</span></div>
-    <div class="center"><span class="ph360">Visite à 360° du cloître : prévue ici<small>contenu fourni par la commune, format au choix (photos 360°, Kuula, Matterport)</small></span></div>
-    <div class="row"><span class="pill">◀ Accueil</span><span class="pill">Espace immersif ▶</span></div></div>
-    <i class="hot" style="left:22%;top:66%"></i><i class="hot" style="left:74%;top:60%"></i></div>
-</div></section>
-
-</main>
-
-<section class="nl"><div class="wrap">
-  <div><h2><span data-i18n="nl.h">Ne manquez rien des Augustins</span></h2><p><span data-i18n="nl.p">Une lettre par mois, composée automatiquement à partir des nouveaux événements, puis relue par l'équipe.</span></p></div>
-  <div><form onsubmit="event.preventDefault();this.querySelector('button').textContent='Merci !'"><label class="sr" for="nlm">E-mail</label><input id="nlm" type="email" placeholder="Votre adresse e-mail" data-i18n-ph="nl.ph" required><button class="btn btn-bx"><span data-i18n="nl.btn">Je m'inscris</span></button></form>
-  <div class="opts"><label><input type="checkbox" checked> Programmation</label><label><input type="checkbox" checked> Before</label><label><input type="checkbox"> Ateliers jeune public</label><label><input type="checkbox"> Scolaires</label></div>
-  <p class="legal"><span data-i18n="nl.legal">Vos données servent uniquement à l'envoi de la lettre (Brevo). Désinscription en un clic.</span></p></div>
-</div><svg class="bg" viewBox="0 0 280 428" aria-hidden="true" focusable="false" ><path fill="#FFFCF7" d="M5.36,423.44C4.64,423.12 4.67,425.50 4.67,348.45C4.67,269.36 4.71,264.05 5.49,255.25C5.67,253.23 5.90,250.35 6.00,248.83C6.10,247.32 6.29,245.30 6.43,244.33C6.56,243.37 6.82,241.05 7.01,239.19C7.19,237.32 7.41,235.48 7.49,235.10C7.57,234.72 7.76,233.40 7.91,232.17C8.05,230.93 8.32,229.05 8.50,228.00C8.68,226.95 9.10,224.43 9.43,222.42C14.12,193.76 23.58,164.16 36.03,139.26C41.26,128.81 47.80,117.52 52.61,110.64C53.55,109.30 54.87,107.35 55.54,106.31C57.28,103.64 63.79,95.10 67.40,90.75C75.11,81.46 84.90,71.40 93.92,63.50C100.01,58.17 100.05,57.64 94.55,55.23C68.96,44.03 34.49,36.66 4.88,36.05L0.00,35.95L0.00,17.97L0.00,0.00L2.14,0.00C3.62,0.00 4.43,0.07 4.77,0.23C5.65,0.65 9.00,0.73 9.00,0.32C9.00,-0.15 16.94,-0.10 18.14,0.38C19.19,0.80 23.06,1.45 27.35,1.91C64.54,5.90 96.34,14.97 125.17,29.79C133.71,34.19 133.07,33.89 134.26,33.97C135.66,34.06 135.99,33.93 140.69,31.46C171.13,15.49 203.76,6.12 244.08,1.75C247.42,1.39 251.09,0.76 252.01,0.39C252.69,0.11 253.65,0.08 264.85,0.04L276.96,-0.00L277.15,0.74C277.53,2.26 277.40,34.87 277.01,35.37C276.68,35.79 276.68,35.79 270.38,35.90C237.57,36.50 207.05,42.37 179.17,53.45C168.65,57.63 168.32,58.11 173.12,62.33C181.47,69.69 193.75,82.28 195.15,84.91C196.32,87.13 195.02,87.89 185.50,90.56C180.57,91.95 170.18,95.54 165.17,97.59C159.29,100.01 159.65,100.09 154.19,94.86C148.62,89.52 143.90,85.39 138.85,81.43C134.73,78.21 134.02,78.18 130.20,81.05C117.93,90.27 101.63,106.36 93.98,116.79C92.89,118.27 91.40,120.26 90.66,121.20C89.03,123.30 83.16,131.93 80.84,135.65C72.85,148.46 65.24,164.09 60.13,178.17C57.55,185.30 56.69,187.84 55.01,193.33C52.80,200.55 52.81,200.53 52.17,203.42C51.88,204.70 51.36,206.84 50.99,208.17C50.63,209.50 50.15,211.48 49.93,212.58C49.70,213.68 49.29,215.52 49.02,216.67C48.74,217.81 48.29,220.10 48.01,221.75C47.73,223.40 47.21,226.42 46.84,228.45C46.48,230.49 46.06,233.26 45.91,234.62C45.77,235.97 45.47,238.17 45.25,239.50C44.89,241.65 44.19,248.09 43.92,251.75C43.86,252.48 43.71,254.17 43.58,255.50C42.75,263.79 42.75,263.49 42.75,344.83C42.75,428.32 42.84,421.69 41.72,422.67C41.42,422.93 40.89,423.23 40.54,423.32C39.76,423.53 5.82,423.65 5.36,423.44ZM224.75,423.25C223.86,422.93 223.24,422.21 223.03,421.23C222.89,420.58 222.78,342.08 222.89,327.00C222.95,318.69 222.64,268.58 222.52,266.42C222.43,264.95 222.28,261.99 222.18,259.83C221.89,253.54 221.68,250.68 221.35,248.13C221.18,246.82 220.98,245.04 220.92,244.17C220.86,243.30 220.67,241.53 220.50,240.25C220.33,238.97 220.11,237.01 220.01,235.91C219.92,234.80 219.68,233.15 219.50,232.24C219.31,231.33 218.97,229.31 218.75,227.75C218.20,223.80 217.58,220.21 216.91,217.08C216.60,215.62 216.19,213.48 216.00,212.33C215.81,211.19 215.36,209.12 215.00,207.75C214.63,206.38 214.05,204.01 213.70,202.50C211.46,192.91 206.31,177.18 201.99,166.72C197.57,156.00 192.55,146.01 186.42,135.73C182.44,129.05 182.37,129.18 191.85,126.10C194.55,125.23 198.29,124.09 200.17,123.58C202.05,123.06 205.16,122.20 207.09,121.66C213.23,119.93 217.68,119.13 219.05,119.51C220.81,120.00 223.07,123.69 229.40,136.33C248.73,174.99 258.50,216.31 260.67,268.58C260.90,274.25 260.89,420.53 260.66,421.38C260.40,422.32 259.63,423.09 258.76,423.31C257.55,423.62 225.62,423.56 224.75,423.25Z"/><path fill="#FFFCF7" d="M42.75,308.57C42.33,298.10 42.89,262.34 43.58,255.50C43.71,254.17 43.86,252.48 43.92,251.75C44.19,248.09 44.89,241.65 45.25,239.50C45.47,238.17 45.77,235.97 45.91,234.62C46.06,233.26 46.48,230.49 46.84,228.45C47.21,226.42 47.73,223.40 48.01,221.75C48.29,220.10 48.74,217.81 49.02,216.67C49.29,215.52 49.70,213.68 49.93,212.58C50.15,211.48 50.63,209.50 50.99,208.17C51.36,206.84 51.88,204.70 52.17,203.42C52.81,200.53 52.80,200.55 55.01,193.33C58.86,180.76 60.29,177.21 62.95,173.70C70.73,163.41 81.85,151.54 92.92,141.73C98.51,136.76 98.92,136.27 98.42,135.06C98.01,134.08 97.10,133.58 91.42,131.22C87.26,129.48 87.33,129.55 87.33,127.52C87.33,125.70 87.80,124.85 91.05,120.68C91.81,119.71 93.23,117.83 94.20,116.50C97.13,112.50 106.03,102.52 107.90,101.14C108.95,100.37 110.92,100.44 113.02,101.32C115.80,102.48 120.97,104.96 125.67,107.38C133.96,111.65 133.03,111.25 134.57,111.25C135.79,111.25 136.03,111.19 137.08,110.65C148.68,104.72 153.43,102.46 160.00,99.75C161.60,99.08 164.00,98.09 165.33,97.54C169.99,95.60 180.55,91.95 185.50,90.56C186.65,90.24 188.62,89.64 189.90,89.24C192.38,88.44 195.10,87.73 201.33,86.24C223.82,80.87 245.61,78.19 270.46,77.73C276.50,77.61 276.50,77.61 276.92,78.00C277.33,78.39 277.33,78.39 277.33,95.43C277.33,114.24 277.41,112.89 276.29,113.07C275.99,113.12 272.97,113.19 269.58,113.23C255.23,113.41 235.29,115.49 222.58,118.15C212.84,120.19 210.16,120.80 207.08,121.66C205.16,122.20 201.90,123.11 199.83,123.67C195.49,124.86 185.48,128.19 182.08,129.57C167.50,135.49 167.84,134.92 174.97,141.35C187.81,152.92 202.97,169.99 205.42,175.63C207.11,179.52 212.15,195.88 213.70,202.50C214.05,204.01 214.63,206.38 215.00,207.75C215.36,209.12 215.81,211.19 216.00,212.33C216.19,213.48 216.60,215.62 216.91,217.08C217.58,220.21 218.20,223.80 218.75,227.75C218.97,229.31 219.31,231.33 219.50,232.24C219.68,233.15 219.92,234.80 220.01,235.91C220.11,237.01 220.33,238.97 220.50,240.25C220.67,241.53 220.86,243.30 220.92,244.17C220.98,245.04 221.18,246.82 221.35,248.13C221.68,250.66 221.89,253.57 222.17,259.67C222.26,261.73 222.41,264.84 222.49,266.58C222.72,271.40 222.87,292.81 222.74,302.00L222.62,310.17L221.16,310.17L219.71,310.17L219.34,307.79C209.88,246.16 183.61,195.94 143.25,162.33C134.16,154.76 134.69,154.84 128.00,160.06C87.54,191.69 59.73,239.66 48.34,297.50C47.72,300.66 46.88,305.14 46.48,307.46L45.75,311.67L44.31,311.67L42.87,311.67L42.75,308.57ZM41.00,116.99C32.82,115.60 22.96,114.44 14.17,113.83C5.63,113.24 4.47,113.17 2.21,113.17L0.00,113.17L0.00,95.47L0.00,77.78L5.21,77.89C22.79,78.28 42.79,80.64 60.42,84.41C68.52,86.15 68.17,85.98 68.17,88.13C68.17,89.95 68.42,89.50 65.24,93.36C63.02,96.04 56.79,104.43 54.78,107.42C49.08,115.92 48.47,116.74 47.47,117.26C46.76,117.63 44.13,117.52 41.00,116.99Z"/></svg></section>
-<section class="partners"><div class="wrap">
-  <p class="eyebrow"><span data-i18n="s.part">Ils font vivre les Augustins</span></p>
-  <ul id="c-part">
-   <li><a href="#mairie"><img src="img/logo-mairie.png" alt="Mairie de Marciac"><small>Propriétaire du site</small></a></li>
-   <li><a href="#ot"><img src="img/logo-ot.png" alt="Office de Tourisme Cœur Sud-Ouest"><small>Séjours et accueil <svg class="lk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></small></a></li>
-   <li><a href="#jim"><img src="img/logo-jim.png" alt="Jazz in Marciac"><small>Le festival <svg class="lk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></small></a></li>
-   <li><a href="#cine"><span class="ph-logo">Logo CinéJim 32<br><span class="tbd">prévu ici</span></span><small>Cinéma art et essai <svg class="lk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></small></a></li>
-   <li><a href="#villette"><img src="img/logo-microfolie.png" alt="Micro-Folie Marciac, La Villette"><small>Réseau national <svg class="lk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></small></a></li>
-  </ul><div class="m-nav" data-for="#c-part"><button class="m-btn" data-dir="-1" aria-label="Précédent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button><div class="m-dots"><i></i><i></i><i></i><i></i><i></i></div><button class="m-btn" data-dir="1" aria-label="Suivant"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></div>
-</div></section>
-<footer class="ft" id="infos"><div class="wrap"><div class="grid">
-  <div><img class="lg" src="img/logo-augustins-blanc.svg" alt="Pôle culturel et touristique des Augustins, Marciac">
-   <p style="margin-top:22px;font-size:15px;line-height:1.6">4 bis place du Chevalier d'Antras<br>32230 Marciac</p></div>
-  <div><h4><span data-i18n="f.find">Nous trouver</span></h4><ul><li>Horaires : <span class="tbd">prévus ici</span></li><li>Tél. : <span class="tbd">prévu ici</span></li><li><a href="#contact">Nous écrire</a></li><li><a href="#acces">Plan d'accès et stationnement</a></li><li><a href="#pmr">Accessibilité PMR</a></li></ul></div>
-  <div><h4><span data-i18n="f.pole">Le Pôle</span></h4><ul><li><a href="augustins-le-pole.html">Le projet culturel</a></li><li><a href="augustins-le-pole.html#univers">Les neuf univers</a></li><li><a href="augustins-agenda.html">Programmation</a></li><li><a href="#galerie">Galerie</a></li><li><a href="#partenaires">Partenaires</a></li></ul></div>
-  <div><h4><span data-i18n="f.prat">Pratique</span></h4><ul><li><a href="#tarifs">Tarifs</a></li><li><a href="#groupes">Groupes et scolaires</a></li><li><a href="#docs">Brochures à télécharger</a></li><li><a href="#presse">Espace presse</a></li></ul>
-   <h4 style="margin-top:26px"><span data-i18n="f.follow">Suivre les Augustins</span></h4><div class="soc"><a href="#fb" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6Z"/></svg></a><a href="#ig" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="#yt" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2a3 3 0 0 0-2-2C18.2 5.7 12 5.7 12 5.7s-6.2 0-8 .5a3 3 0 0 0-2 2C1.5 10 1.5 12 1.5 12s0 2 .5 3.8a3 3 0 0 0 2 2c1.8.5 8 .5 8 .5s6.2 0 8-.5a3 3 0 0 0 2-2c.5-1.8.5-3.8.5-3.8s0-2-.5-3.8ZM10 15.2V8.8l5.3 3.2Z"/></svg></a><a href="#in" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9h3.6v11H4zM5.8 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM10 9h3.4v1.6c.5-.9 1.7-1.9 3.6-1.9 3.6 0 4 2.3 4 5.3v6h-3.6v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V20H10z"/></svg></a></div>
-   <p style="font-size:12px;opacity:.6;margin-top:8px">Comptes à créer : prévus ici</p></div>
- </div>
- <div class="bottom"><span>© Commune de Marciac · Pôle culturel et touristique des Augustins</span><span><a href="#ml"><span data-i18n="f.legal">Mentions légales</span></a> · <a href="#a11y"><span data-i18n="f.a11y">Accessibilité : conforme RGAA (audit prévu ici)</span></a> · <a href="#rgpd"><span data-i18n="f.priv">Données personnelles</span></a> · <a href="#cookies"><span data-i18n="f.cookies">Gestion des cookies</span></a></span></div>
-</div><svg class="bg" viewBox="0 0 280 428" aria-hidden="true" focusable="false" ><path fill="#F6EFE4" d="M5.36,423.44C4.64,423.12 4.67,425.50 4.67,348.45C4.67,269.36 4.71,264.05 5.49,255.25C5.67,253.23 5.90,250.35 6.00,248.83C6.10,247.32 6.29,245.30 6.43,244.33C6.56,243.37 6.82,241.05 7.01,239.19C7.19,237.32 7.41,235.48 7.49,235.10C7.57,234.72 7.76,233.40 7.91,232.17C8.05,230.93 8.32,229.05 8.50,228.00C8.68,226.95 9.10,224.43 9.43,222.42C14.12,193.76 23.58,164.16 36.03,139.26C41.26,128.81 47.80,117.52 52.61,110.64C53.55,109.30 54.87,107.35 55.54,106.31C57.28,103.64 63.79,95.10 67.40,90.75C75.11,81.46 84.90,71.40 93.92,63.50C100.01,58.17 100.05,57.64 94.55,55.23C68.96,44.03 34.49,36.66 4.88,36.05L0.00,35.95L0.00,17.97L0.00,0.00L2.14,0.00C3.62,0.00 4.43,0.07 4.77,0.23C5.65,0.65 9.00,0.73 9.00,0.32C9.00,-0.15 16.94,-0.10 18.14,0.38C19.19,0.80 23.06,1.45 27.35,1.91C64.54,5.90 96.34,14.97 125.17,29.79C133.71,34.19 133.07,33.89 134.26,33.97C135.66,34.06 135.99,33.93 140.69,31.46C171.13,15.49 203.76,6.12 244.08,1.75C247.42,1.39 251.09,0.76 252.01,0.39C252.69,0.11 253.65,0.08 264.85,0.04L276.96,-0.00L277.15,0.74C277.53,2.26 277.40,34.87 277.01,35.37C276.68,35.79 276.68,35.79 270.38,35.90C237.57,36.50 207.05,42.37 179.17,53.45C168.65,57.63 168.32,58.11 173.12,62.33C181.47,69.69 193.75,82.28 195.15,84.91C196.32,87.13 195.02,87.89 185.50,90.56C180.57,91.95 170.18,95.54 165.17,97.59C159.29,100.01 159.65,100.09 154.19,94.86C148.62,89.52 143.90,85.39 138.85,81.43C134.73,78.21 134.02,78.18 130.20,81.05C117.93,90.27 101.63,106.36 93.98,116.79C92.89,118.27 91.40,120.26 90.66,121.20C89.03,123.30 83.16,131.93 80.84,135.65C72.85,148.46 65.24,164.09 60.13,178.17C57.55,185.30 56.69,187.84 55.01,193.33C52.80,200.55 52.81,200.53 52.17,203.42C51.88,204.70 51.36,206.84 50.99,208.17C50.63,209.50 50.15,211.48 49.93,212.58C49.70,213.68 49.29,215.52 49.02,216.67C48.74,217.81 48.29,220.10 48.01,221.75C47.73,223.40 47.21,226.42 46.84,228.45C46.48,230.49 46.06,233.26 45.91,234.62C45.77,235.97 45.47,238.17 45.25,239.50C44.89,241.65 44.19,248.09 43.92,251.75C43.86,252.48 43.71,254.17 43.58,255.50C42.75,263.79 42.75,263.49 42.75,344.83C42.75,428.32 42.84,421.69 41.72,422.67C41.42,422.93 40.89,423.23 40.54,423.32C39.76,423.53 5.82,423.65 5.36,423.44ZM224.75,423.25C223.86,422.93 223.24,422.21 223.03,421.23C222.89,420.58 222.78,342.08 222.89,327.00C222.95,318.69 222.64,268.58 222.52,266.42C222.43,264.95 222.28,261.99 222.18,259.83C221.89,253.54 221.68,250.68 221.35,248.13C221.18,246.82 220.98,245.04 220.92,244.17C220.86,243.30 220.67,241.53 220.50,240.25C220.33,238.97 220.11,237.01 220.01,235.91C219.92,234.80 219.68,233.15 219.50,232.24C219.31,231.33 218.97,229.31 218.75,227.75C218.20,223.80 217.58,220.21 216.91,217.08C216.60,215.62 216.19,213.48 216.00,212.33C215.81,211.19 215.36,209.12 215.00,207.75C214.63,206.38 214.05,204.01 213.70,202.50C211.46,192.91 206.31,177.18 201.99,166.72C197.57,156.00 192.55,146.01 186.42,135.73C182.44,129.05 182.37,129.18 191.85,126.10C194.55,125.23 198.29,124.09 200.17,123.58C202.05,123.06 205.16,122.20 207.09,121.66C213.23,119.93 217.68,119.13 219.05,119.51C220.81,120.00 223.07,123.69 229.40,136.33C248.73,174.99 258.50,216.31 260.67,268.58C260.90,274.25 260.89,420.53 260.66,421.38C260.40,422.32 259.63,423.09 258.76,423.31C257.55,423.62 225.62,423.56 224.75,423.25Z"/><path fill="#F6EFE4" d="M42.75,308.57C42.33,298.10 42.89,262.34 43.58,255.50C43.71,254.17 43.86,252.48 43.92,251.75C44.19,248.09 44.89,241.65 45.25,239.50C45.47,238.17 45.77,235.97 45.91,234.62C46.06,233.26 46.48,230.49 46.84,228.45C47.21,226.42 47.73,223.40 48.01,221.75C48.29,220.10 48.74,217.81 49.02,216.67C49.29,215.52 49.70,213.68 49.93,212.58C50.15,211.48 50.63,209.50 50.99,208.17C51.36,206.84 51.88,204.70 52.17,203.42C52.81,200.53 52.80,200.55 55.01,193.33C58.86,180.76 60.29,177.21 62.95,173.70C70.73,163.41 81.85,151.54 92.92,141.73C98.51,136.76 98.92,136.27 98.42,135.06C98.01,134.08 97.10,133.58 91.42,131.22C87.26,129.48 87.33,129.55 87.33,127.52C87.33,125.70 87.80,124.85 91.05,120.68C91.81,119.71 93.23,117.83 94.20,116.50C97.13,112.50 106.03,102.52 107.90,101.14C108.95,100.37 110.92,100.44 113.02,101.32C115.80,102.48 120.97,104.96 125.67,107.38C133.96,111.65 133.03,111.25 134.57,111.25C135.79,111.25 136.03,111.19 137.08,110.65C148.68,104.72 153.43,102.46 160.00,99.75C161.60,99.08 164.00,98.09 165.33,97.54C169.99,95.60 180.55,91.95 185.50,90.56C186.65,90.24 188.62,89.64 189.90,89.24C192.38,88.44 195.10,87.73 201.33,86.24C223.82,80.87 245.61,78.19 270.46,77.73C276.50,77.61 276.50,77.61 276.92,78.00C277.33,78.39 277.33,78.39 277.33,95.43C277.33,114.24 277.41,112.89 276.29,113.07C275.99,113.12 272.97,113.19 269.58,113.23C255.23,113.41 235.29,115.49 222.58,118.15C212.84,120.19 210.16,120.80 207.08,121.66C205.16,122.20 201.90,123.11 199.83,123.67C195.49,124.86 185.48,128.19 182.08,129.57C167.50,135.49 167.84,134.92 174.97,141.35C187.81,152.92 202.97,169.99 205.42,175.63C207.11,179.52 212.15,195.88 213.70,202.50C214.05,204.01 214.63,206.38 215.00,207.75C215.36,209.12 215.81,211.19 216.00,212.33C216.19,213.48 216.60,215.62 216.91,217.08C217.58,220.21 218.20,223.80 218.75,227.75C218.97,229.31 219.31,231.33 219.50,232.24C219.68,233.15 219.92,234.80 220.01,235.91C220.11,237.01 220.33,238.97 220.50,240.25C220.67,241.53 220.86,243.30 220.92,244.17C220.98,245.04 221.18,246.82 221.35,248.13C221.68,250.66 221.89,253.57 222.17,259.67C222.26,261.73 222.41,264.84 222.49,266.58C222.72,271.40 222.87,292.81 222.74,302.00L222.62,310.17L221.16,310.17L219.71,310.17L219.34,307.79C209.88,246.16 183.61,195.94 143.25,162.33C134.16,154.76 134.69,154.84 128.00,160.06C87.54,191.69 59.73,239.66 48.34,297.50C47.72,300.66 46.88,305.14 46.48,307.46L45.75,311.67L44.31,311.67L42.87,311.67L42.75,308.57ZM41.00,116.99C32.82,115.60 22.96,114.44 14.17,113.83C5.63,113.24 4.47,113.17 2.21,113.17L0.00,113.17L0.00,95.47L0.00,77.78L5.21,77.89C22.79,78.28 42.79,80.64 60.42,84.41C68.52,86.15 68.17,85.98 68.17,88.13C68.17,89.95 68.42,89.50 65.24,93.36C63.02,96.04 56.79,104.43 54.78,107.42C49.08,115.92 48.47,116.74 47.47,117.26C46.76,117.63 44.13,117.52 41.00,116.99Z"/></svg></footer>
-<div class="demo">Maquette de démonstration réalisée pour la consultation MP2026_003. Textes et photographies issus de sources publiques (Office de Tourisme Cœur Sud-Ouest, Tourisme Gers, La Dépêche), droits réservés à leurs auteurs. Programmation fictive inspirée des formats existants. Les mentions <span class="tbd">prévu ici</span> signalent les contenus que la commune fournira.</div>
-<script src="js/i18n.js"></script><script src="js/app.js"></script>
-</body></html>
+</body>
+</html>
