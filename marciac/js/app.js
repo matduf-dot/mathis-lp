@@ -2,6 +2,33 @@
   var $=function(s,c){return (c||document).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
   var L=['fr','en','es'], cur='fr';
   function tr(k){var v=(window.I18N||{})[k];return v?v[L.indexOf(cur)]:null}
+  /* textes sans clé : dictionnaire I18N_TXT indexé sur le français, heures 18h30 converties */
+  var TX=window.I18N_TXT||{}, relang=[], H=/\b(\d{1,2})h(\d{2})?\b/g;
+  function key(s){return s.replace(/\s+/g," ").trim()}
+  function hour(s){
+    if(cur==="fr")return s;
+    return s.replace(H,function(m,h,mn){h=+h;mn=mn||"00";
+      if(cur==="es")return h+":"+mn;
+      return (h%12||12)+(mn==="00"?"":":"+mn)+(h<12?" am":" pm")});
+  }
+  function has(s){var k=key(s);H.lastIndex=0;var r=!!TX[k]||H.test(k);H.lastIndex=0;return r}
+  function tt(s){if(cur==="fr"||s==null)return s;var k=key(s),v=TX[k];return hour(v?s.replace(s.trim(),v[L.indexOf(cur)-1]):s)}
+  var WEEK={fr:["L","M","M","J","V","S","D"],en:["M","T","W","T","F","S","S"],es:["L","M","X","J","V","S","D"]};
+  var MONTH={fr:"novembre",en:"November",es:"noviembre"};
+  function dayLabel(d){return cur==="en"?MONTH.en+" "+d:cur==="es"?d+" de "+MONTH.es:d+" "+MONTH.fr}
+  function relangAll(){
+    var w=document.createTreeWalker(document.body,4),n;
+    while(n=w.nextNode()){var pe=n.parentElement;if(!pe||pe.closest("script,style,[data-i18n]"))continue;
+      if(n.__fr==null){if(!has(n.nodeValue))continue;n.__fr=n.nodeValue}
+      n.nodeValue=tt(n.__fr)}
+    $$("[alt],[aria-label],[title],[placeholder]").forEach(function(el){
+      ["alt","aria-label","title","placeholder"].forEach(function(a){
+        if(!el.hasAttribute(a)||(a==="placeholder"&&el.hasAttribute("data-i18n-ph")))return;
+        el.__fra=el.__fra||{};if(el.__fra[a]==null){var v=el.getAttribute(a);if(!has(v)&&!/^\d+ novembre$/.test(key(v)))return;el.__fra[a]=v}
+        var o=el.__fra[a],m=/^(\d+) novembre$/.exec(key(o));el.setAttribute(a,m?dayLabel(m[1]):tt(o))})});
+    if(document.__frt==null)document.__frt=document.title;document.title=tt(document.__frt);
+    $$("table thead tr").forEach(function(r){var th=$$("th",r);if(th.length===7)th.forEach(function(c,i){c.textContent=WEEK[cur][i]})});
+  }
 
   /* ---------- langue ---------- */
   function setLang(l){
@@ -9,12 +36,10 @@
     $$('[data-i18n]').forEach(function(el){var v=tr(el.getAttribute('data-i18n'));if(v)el.textContent=v});
     $$('[data-i18n-ph]').forEach(function(el){var v=tr(el.getAttribute('data-i18n-ph'));if(v)el.placeholder=v});
     $$('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-lang')===l)});
+    relangAll();relang.forEach(function(f){f()});
     try{localStorage.setItem('aug-lang',l)}catch(e){}
   }
   $$('[data-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'))})});
-  var q=new URLSearchParams(location.search).get('lang'), saved=null;
-  try{saved=localStorage.getItem('aug-lang')}catch(e){}
-  if(q&&L.indexOf(q)>-1)setLang(q);else if(saved&&saved!=='fr')setLang(saved);
 
   /* ---------- menu mobile ---------- */
   var bg=$('[data-burger]'), nav=$('#nav');
@@ -24,8 +49,8 @@
   var S=$('#search'), inp=S&&$('input',S), res=S&&$('.res',S);
   function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
   function render(v){
-    var n=norm(v||''), out=(window.IDX||[]).filter(function(x){return !n||norm(x.t+' '+x.s+' '+x.ty).indexOf(n)>-1}).slice(0,8);
-    res.innerHTML=out.map(function(x){return '<a role="listitem" href="'+x.h+'"><span class="ty">'+x.ty+'</span><span><b>'+x.t+'</b><br><small style="color:#6E5F63">'+x.s+'</small></span></a>'}).join('')||'<p style="padding:14px;color:#6E5F63">Aucun résultat.</p>';
+    var n=norm(v||''), out=(window.IDX||[]).filter(function(x){return !n||norm(x.t+' '+x.s+' '+x.ty+' '+tt(x.t)+' '+tt(x.s)+' '+tt(x.ty)).indexOf(n)>-1}).slice(0,8);
+    res.innerHTML=out.map(function(x){return '<a role="listitem" href="'+x.h+'"><span class="ty">'+tt(x.ty)+'</span><span><b>'+tt(x.t)+'</b><br><small style="color:#6E5F63">'+tt(x.s)+'</small></span></a>'}).join('')||'<p style="padding:14px;color:#6E5F63">'+tt('Aucun résultat.')+'</p>';
   }
   function openS(){S.classList.add('on');render('');setTimeout(function(){inp.focus()},30)}
   function closeS(){S.classList.remove('on')}
@@ -34,7 +59,7 @@
     $('[data-close]',S).addEventListener('click',closeS);
     S.addEventListener('click',function(e){if(e.target===S)closeS()});
     inp.addEventListener('input',function(){render(inp.value)});
-    $$('[data-q]',S).forEach(function(c){c.addEventListener('click',function(){inp.value=c.getAttribute('data-q');render(inp.value)})});
+    $$('[data-q]',S).forEach(function(c){c.addEventListener('click',function(){inp.value=tt(c.getAttribute('data-q'));render(inp.value)})});
   }
   var hs=$('[data-hero-search]');
   if(hs)hs.addEventListener('submit',function(e){e.preventDefault();var v=$('input',hs).value;openS();inp.value=v;render(v)});
@@ -49,7 +74,7 @@
     var t=$('[data-cap-t]'),d=$('[data-cap-d]');
     t.setAttribute('data-i18n','u.'+u.k+'.t');d.setAttribute('data-i18n','u.'+u.k+'.d');
     t.textContent=tr('u.'+u.k+'.t');d.textContent=tr('u.'+u.k+'.d');
-    $('[data-cap-tags]').innerHTML=u.tags.map(function(x){return '<span class="tag">'+x+'</span>'}).join('');
+    $('[data-cap-tags]').innerHTML=u.tags.map(function(x){return '<span class="tag">'+tt(x)+'</span>'}).join('');
   }
   tabs.forEach(function(b,i){['mouseenter','focus','click'].forEach(function(ev){b.addEventListener(ev,function(){showU(i)})})});
   if(tabs.length&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -75,8 +100,12 @@
       });
       $$('.day',list).forEach(function(d){d.style.display=$$('.ev',d).some(function(e){return e.style.display!=='none'})?'':'none'});
       $('.empty').style.display=n?'none':'block';
-      $('[data-count]').textContent=n+' rendez-vous'+(fd?' le '+(+fd.slice(-2))+' novembre':' à venir');
+      var dn=fd?+fd.slice(-2):0;
+      $('[data-count]').textContent=cur==='en'?n+(n>1?' events':' event')+(fd?' on '+dayLabel(dn):' coming up')
+        :cur==='es'?n+(n>1?' citas':' cita')+(fd?' el '+dayLabel(dn):(n>1?' próximas':' próxima'))
+        :n+' rendez-vous'+(fd?' le '+dn+' novembre':' à venir');
     }
+    relang.push(apply);
     $$('[data-f]').forEach(function(c){c.addEventListener('click',function(){fc=c.getAttribute('data-f');$$('[data-f]').forEach(function(x){x.setAttribute('aria-pressed',x===c)});apply()})});
     var dd=$('[data-dd]');
     if(dd){
@@ -122,7 +151,7 @@
   if(ct&&cb){ct.addEventListener('click',function(){var on=cb.classList.toggle('open');ct.setAttribute('aria-expanded',on);if(on)cb.scrollIntoView({behavior:'smooth',block:'nearest'})})}
   $$('[data-date]').forEach(function(b){b.addEventListener('click',function(){
     var l=$('[data-cal-label]');if(!l)return;
-    var sel=$('[data-date].sel');l.textContent=sel?(+sel.getAttribute('data-date').slice(-2))+' novembre':(tr('ag.date')||'Choisir une date');
+    var sel=$('[data-date].sel');l.textContent=sel?dayLabel(+sel.getAttribute('data-date').slice(-2)):(tr('ag.date')||'Choisir une date');
     if(sel&&cb&&window.innerWidth<=900){cb.classList.remove('open');ct.setAttribute('aria-expanded',false)}
   })});
 
@@ -130,4 +159,9 @@
   (function(){var hc=document.getElementById('hchips'),hb=document.querySelector('.hbar i');if(!hc||!hb)return;
     function up(){var max=hc.scrollWidth-hc.clientWidth,w=Math.max(18,Math.min(100,hc.clientWidth/hc.scrollWidth*100));hb.style.width=w+'%';hb.style.left=(max>0?hc.scrollLeft/max*(100-w):0)+'%';hb.parentNode.style.visibility=max>2?'visible':'hidden'}
     hc.addEventListener('scroll',function(){requestAnimationFrame(up)},{passive:true});addEventListener('resize',up);up()})();
+  /* ---------- langue au chargement (après la mise en place de l'agenda) ---------- */
+  var q=new URLSearchParams(location.search).get('lang'), saved=null;
+  try{saved=localStorage.getItem('aug-lang')}catch(e){}
+  if(q&&L.indexOf(q)>-1)setLang(q);else if(saved&&saved!=='fr')setLang(saved);
+  window.augSetLang=setLang;
 })();
