@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Saint-Pierre-Quiberon · Prototype du futur site · Mathis Dufour</title>
+<link rel="preload" href="portail/fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Fraunces;font-weight:700;font-display:swap;src:url(portail/fonts/fraunces-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:Fraunces;font-weight:600;font-display:swap;src:url(portail/fonts/fraunces-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Public Sans';font-weight:400;font-display:swap;src:url(portail/fonts/public-sans-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Public Sans';font-weight:600;font-display:swap;src:url(portail/fonts/public-sans-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Public Sans';font-weight:700;font-display:swap;src:url(portail/fonts/public-sans-latin-700-normal.woff2) format('woff2')}
+:root{--navy:#1A3263;--ink:#122447;--gold:#FAB95B;--cream:#F9F8F6;--mist:#C9D3E4}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Public Sans',system-ui,sans-serif;background:var(--ink);color:#fff;line-height:1.5;min-height:100vh}
+a{color:inherit}
+.wrap{width:min(1240px,100% - 48px);margin:0 auto}
+header{padding:56px 0 0}
+.k{display:flex;align-items:center;gap:12px;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.k::before{content:"";width:28px;height:2px;background:var(--gold)}
+h1{font-family:Fraunces,serif;font-weight:700;font-size:clamp(2.3rem,5vw,4rem);line-height:1.02;letter-spacing:-.01em;margin:18px 0 0;max-width:900px}
+.lede{margin-top:20px;max-width:720px;font-size:1.08rem;color:var(--mist)}
+.lede b{color:#fff;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin:52px 0 0}
+.card{position:relative;display:flex;flex-direction:column;text-decoration:none;color:#fff;border-radius:6px;outline-offset:6px}
+.card:focus-visible{outline:3px solid var(--gold)}
+.shot{position:relative;aspect-ratio:16/11;border-radius:6px;overflow:visible;background:#0D1B38}
+.frame{position:absolute;inset:0;border-radius:6px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12)}
+.bar{height:26px;background:#E9ECF1;display:flex;align-items:center;gap:6px;padding:0 10px}
+.bar i{width:8px;height:8px;border-radius:50%;background:#C3CAD5}
+.frame img{display:block;width:100%;height:calc(100% - 26px);object-fit:cover;object-position:top center;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.phone{position:absolute;right:-10px;bottom:-26px;width:27%;aspect-ratio:260/500;border-radius:16px;overflow:hidden;border:5px solid #0B1630;box-shadow:0 18px 40px rgba(0,0,0,.45);background:#fff;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.txt{padding:44px 4px 0;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:baseline}
+.n{font-family:Fraunces,serif;font-weight:600;font-size:1rem;color:var(--gold);grid-row:1/3}
+.txt h2{font-family:Fraunces,serif;font-weight:700;font-size:1.6rem;line-height:1.15}
+.txt p{font-size:.95rem;color:var(--mist);grid-column:2}
+.go{grid-column:2;margin-top:14px;display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem;border-bottom:2px solid var(--gold);padding-bottom:3px;justify-self:start}
+.go svg{width:16px;height:16px;transition:transform .3s}
+@media (hover:hover){
+ .card:hover .frame img{transform:scale(1.03)}
+ .card:hover .phone{transform:translateY(-8px)}
+ .card:hover .go svg{transform:translateX(4px)}
+}
+.note{margin:64px 0 0;padding:26px 0;border-top:1px solid rgba(255,255,255,.14);display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:space-between;font-size:.88rem;color:var(--mist)}
+.note b{color:#fff;font-weight:600}
+.note a{color:#fff;text-underline-offset:3px}
+@media (max-width:980px){
+ .grid{grid-template-columns:1fr;gap:56px;max-width:620px}
+ .txt{padding-top:40px}
+}
+@media (max-width:560px){
+ .wrap{width:calc(100% - 40px)}
+ header{padding-top:36px}
+ .lede{font-size:1rem}
+ .grid{margin-top:40px;gap:50px}
+ .phone{right:-6px;bottom:-22px;border-width:4px;border-radius:12px}
+ .txt h2{font-size:1.4rem}
+ .note{margin-top:48px;flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="wrap">
+<p class="k">Consultation n° 2026-011 · Commune de Saint-Pierre-Quiberon</p>
+<h1>Le futur site de la commune, à parcourir</h1>
+<p class="lede">Trois pages réelles, <b>navigables et responsives</b>, construites avec les contenus, les photographies et les arrêtés du site actuel, à partir de l'arborescence et des maquettes du dossier. Ouvrez-les aussi sur votre téléphone.</p>
+</header>
+<main class="wrap">
+<div class="grid">
+<a class="card" href="site/index.html">
+ <div class="shot"><div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="portail/accueil.webp" width="1200" height="750" alt=""></div><div class="phone"><img src="portail/accueil-m.webp" width="260" height="500" alt=""></div></div>
+ <div class="txt"><span class="n">01</span><h2>Page d'accueil</h2><p>Recherche dans tout le site, parcours « Vous êtes… », carte des lieux et des zones nautiques, météo du jour.</p><span class="go">Ouvrir la page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+</a>
+<a class="card" href="site/annuaire.html">
+ <div class="shot"><div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="portail/annuaire.webp" width="1200" height="750" alt="" loading="lazy"></div><div class="phone"><img src="portail/annuaire-m.webp" width="260" height="500" alt="" loading="lazy"></div></div>
+ <div class="txt"><span class="n">02</span><h2>Annuaire économique</h2><p>Les 71 professionnels de la commune, filtres par type et par activité, vue liste ou carte, appel en un geste sur mobile.</p><span class="go">Ouvrir la page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+</a>
+<a class="card" href="site/arretes.html">
+ <div class="shot"><div class="frame"><div class="bar"><i></i><i></i><i></i></div><img src="portail/arretes.webp" width="1200" height="750" alt="" loading="lazy"></div><div class="phone"><img src="portail/arretes-m.webp" width="260" height="500" alt="" loading="lazy"></div></div>
+ <div class="txt"><span class="n">03</span><h2>Arrêtés municipaux</h2><p>Les 19 arrêtés en vigueur, classés par thème et par année, recherche dans les textes, lien direct vers l'acte signé.</p><span class="go">Ouvrir la page <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+</a>
+</div>
+<div class="note"><p><b>Proposition de Mathis Dufour</b> · <a href="mailto:mathis@mathisdufour.com">mathis@mathisdufour.com</a> · <a href="tel:+33626353491">06 26 35 34 91</a></p><p>Site de démonstration, non référencé. Contenus et photographies : site de la commune de Saint-Pierre-Quiberon.</p></div>
+</main>
+</body>
+</html>
