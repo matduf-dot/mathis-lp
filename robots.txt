@@ -4,3 +4,4 @@ Disallow: /proposition-vicq/
 Disallow: /concepts.pdf
 Disallow: /mae/
 Disallow: /references/
+Disallow: /tessalonia/
