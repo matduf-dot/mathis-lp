@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ville de Clichy-la-Garenne</title>
+<meta name="description" content="Maquette d'intention du futur site de la Ville de Clichy-la-Garenne, réalisée pour la consultation SE26-013. Contenus d'exemple.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0c0d12">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"GovernmentOrganization","name":"Ville de Clichy-la-Garenne","url":"https://www.ville-clichy.fr/","telephone":"+33147153000","address":{"@type":"PostalAddress","streetAddress":"80 boulevard Jean-Jaurès","postalCode":"92110","addressLocality":"Clichy","addressCountry":"FR"}}</script>
+</head>
+<body class="home">
+<a class="sr" href="#contenu">Aller au contenu</a>
+
+<!-- Barre de démonstration -->
+<div class="demo" data-cctp="skin" data-pin="6,-6">
+  <div class="wrap">
+    <p class="demo__tag"><span class="demo__dot" aria-hidden="true"></span><b>Maquette d'intention</b><span class="dsk">Consultation SE26-013 · contenus et horaires d'exemple</span></p>
+    <div class="demo__ctrl">
+      <div class="seg" role="group" aria-label="Habillage graphique">
+        <button type="button" data-skin-btn="clichy" aria-pressed="true"><span class="sw" style="background:#2b3be0"></span>Clichy</button>
+        <button type="button" data-skin-btn="rose" aria-pressed="false"><span class="sw" style="background:#d8236b"></span>Octobre rose</button>
+        <button type="button" data-skin-btn="charte" aria-pressed="false"><span class="sw" style="background:#0b7a52"></span>Charte 2027</button>
+        <button type="button" data-skin-btn="contraste" aria-pressed="false"><span class="sw" style="background:#000;box-shadow:inset 0 0 0 2px #fff"></span>Contraste</button>
+      </div>
+      <button type="button" class="toggle-cctp" aria-pressed="false"><span class="count">0</span><span class="dsk">Lecture du cahier des charges</span><span class="mob">Cahier des charges</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- Infos flash -->
+<div class="flash" role="region" aria-label="Infos flash" data-cctp="flash" data-pin="9,-8">
+  <div class="wrap">
+    <span class="label"><span class="dsk">Infos flash</span><span class="mob">Info</span></span>
+    <p><span class="fl-t">Concert de la Sainte-Cécile complet ce soir.<span class="dsk"> Retransmission en direct sur la chaîne YouTube de la Ville.</span></span> <a href="#" data-soon><span class="dsk">Voir le direct</span><span class="mob">Direct</span></a></p>
+    <button class="flash__close" type="button" aria-label="Masquer cette info"><svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="2"><path d="M2 2l10 10M12 2 2 12"/></svg></button>
+  </div>
+</div>
+
+<!-- En-tête -->
+<header class="head">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Ville de Clichy-la-Garenne, accueil"><span class="logo__img"></span></a>
+    <nav class="nav" aria-label="Menu principal" data-cctp="nav" data-pin="-18,-18">
+      <button type="button" data-menu="demarches" aria-expanded="false">Démarches<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3l4 4 4-4"/></svg></button>
+      <button type="button" data-menu="famille" aria-expanded="false">Famille et école<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3l4 4 4-4"/></svg></button>
+      <button type="button" data-menu="vivre" aria-expanded="false">Vivre à Clichy<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3l4 4 4-4"/></svg></button>
+      <button type="button" data-menu="sortir" aria-expanded="false">Sortir<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3l4 4 4-4"/></svg></button>
+      <button type="button" data-menu="mairie" aria-expanded="false">La mairie<svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3l4 4 4-4"/></svg></button>
+    </nav>
+    <div class="head__tools">
+      <button class="iconbtn lang" type="button" aria-label="English version">EN</button>
+      <a class="iconbtn" href="#recherche" aria-label="Rechercher"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8.5" cy="8.5" r="6"/><path d="m13 13 5 5"/></svg></a>
+      <a class="btn btn--solid" href="#" aria-label="Mon espace" data-soon="Connexion à votre espace (Clichy Famille, démarches en cours, rendez-vous)"><span class="dsk">Mon espace</span><span class="mob">Espace</span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="5.5" r="3"/><path d="M2.5 14c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5"/></svg></i></a>
+      <button class="iconbtn burger" type="button" aria-expanded="false" aria-label="Ouvrir le menu"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
+    </div>
+  </div>
+  <div class="mega" id="mega"></div>
+</header>
+
+<main id="contenu">
+
+<!-- Héro : je suis / je veux + recherche -->
+<section class="hero" aria-labelledby="t-hero">
+  <div class="wrap">
+    <div>
+      <p class="hello label"><span id="hello">Bonjour</span> · <b data-today>Dimanche 22 novembre</b></p>
+      <form class="builder-form" data-cctp="builder" data-pin="-14,-14" onsubmit="return false">
+        <h1 id="t-hero" class="display builder">
+          <span class="line">Je suis <span class="slot"><label class="sr" for="who">Je suis</label><select id="who">
+            <option value="habitant">habitant</option><option value="parent">parent</option><option value="nouvel arrivant">nouvel arrivant</option><option value="senior">senior</option><option value="commerçant">commerçant</option><option value="association">une association</option><option value="en situation de handicap">en situation de handicap</option><option value="visiteur">de passage</option>
+          </select></span></span>
+          <span class="line">et je veux <span class="slot"><label class="sr" for="want">Je veux</label><select id="want"></select></span></span>
+        </h1>
+        <div class="builder__go">
+          <a class="btn btn--solid" id="go" href="demarche.html">C'est parti<i>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></i></a>
+          <p class="result" id="go-result" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <form class="search" id="recherche" role="search" data-search data-cctp="search" data-pin="-12,-12">
+        <div class="search__box">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6"/><path d="m13 13 5 5"/></svg>
+          <label class="sr" for="q">Rechercher sur le site</label>
+          <input id="q" type="search" autocomplete="off" placeholder="Ou cherchez : passeport, piscine, encombrants…" role="combobox" aria-expanded="false" aria-controls="sg" aria-autocomplete="list">
+          <button class="btn btn--solid" type="submit" aria-label="Rechercher"><svg class="sb-ico" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.8"/><path d="m13 13 4.5 4.5"/></svg><span>Rechercher</span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></i></button>
+        </div>
+        <div class="suggest" id="sg" role="listbox"></div>
+      </form>
+      <div class="popular" data-cctp="popular" data-pin="-12,-14">
+        <span class="label">Les plus recherchés</span>
+        <button class="chip" type="button" data-fill="piscine">Piscine</button>
+        <button class="chip" type="button" data-fill="passeport">Passeport</button>
+        <button class="chip" type="button" data-fill="encombrants">Encombrants</button>
+        <button class="chip" type="button" data-fill="stationnement">Stationnement</button>
+        <button class="chip" type="button" data-fill="inscription école">Inscriptions scolaires</button>
+      </div>
+    </div>
+
+    <figure class="ring" aria-label="Clichy, vue sur les toits vers la porte de Clichy">
+      <svg viewBox="-12 -12 124 124" role="img" aria-hidden="true">
+        <defs>
+          <clipPath id="disc"><circle cx="50" cy="50" r="37"/></clipPath>
+          <path id="arcTop" d="M2.08 32.56 A51 51 0 0 1 97.92 32.56"/>
+          <path id="arcBot" d="M-0.27 68.30 A53.6 53.6 0 0 0 100.27 68.30"/>
+        </defs>
+        <image href="assets/img/skyline-800.webp" x="0" y="13" width="100" height="74" preserveAspectRatio="xMidYMid slice" clip-path="url(#disc)"/>
+        <circle class="ring__arc" cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="233 46.6" transform="rotate(30 50 50)"/>
+        <path class="ring__thin" d="M12.08 81.82 A49.5 49.5 0 0 1 12.08 18.18" fill="none" stroke="currentColor" stroke-width="1.3"/>
+        <text class="ring__text"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">Plus de 65 000 habitants</textPath></text>
+        <text class="ring__text"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">aux portes de Paris</textPath></text>
+      </svg>
+      <figcaption class="ring__credit">Photo&nbsp;: Lolo92110, CC BY-SA 4.0</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Aujourd'hui -->
+<section class="today" aria-label="Aujourd'hui à Clichy" data-cctp="today" data-pin="-12,8">
+  <div class="wrap">
+    <div class="today__title"><span class="label">Aujourd'hui</span><b data-today>Dimanche 22 novembre</b></div>
+    <a href="#" data-soon><span class="ico"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 7.5 9 3l7 4.5M3.5 7.5V15h11V7.5M7 15v-4h4v4"/></svg></span><span class="k">Hôtel de ville</span><span class="v"><span id="st-mairie" class="state">Ouverte</span></span></a>
+    <a href="#" data-soon><span class="ico"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12c1.5 1.2 3 1.2 4.5 0s3-1.2 4.5 0 3 1.2 4.5 0M2 15.5c1.5 1.2 3 1.2 4.5 0s3-1.2 4.5 0 3 1.2 4.5 0M6 10V4a2 2 0 0 1 4 0M10 10V4"/></svg></span><span class="k">Piscine municipale</span><span class="v"><span class="state">Ouverte jusqu'à 18h</span></span></a>
+    <a href="#pres-de-chez-moi"><span class="ico"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h12M7 5V3h4v2M4.5 5l1 10h7l1-10"/></svg></span><span class="k">Collecte, centre-ville</span><span class="v">Ordures ménagères demain</span></a>
+    <a href="#agenda"><span class="ico"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="3.5" width="13" height="12" rx="1.5"/><path d="M2.5 7.5h13M6 2v3M12 2v3"/></svg></span><span class="k">Ce soir</span><span class="v">Concert de la Sainte-Cécile · complet</span></a>
+  </div>
+</section>
+
+<!-- Démarches les plus demandées -->
+<section class="sec" aria-labelledby="t-top">
+  <div class="wrap top">
+    <div class="top__aside">
+      <span class="label muted paren">Démarches</span>
+      <h2 id="t-top">Les plus demandées</h2>
+      <p class="lede">Ce que les Clichois font le plus souvent, accessible directement depuis l'accueil.</p>
+      <div class="clicks">
+        <svg class="clicks__n" viewBox="0 0 86 86" aria-hidden="true">
+          <circle cx="43" cy="43" r="36" fill="none" stroke="var(--accent)" stroke-width="10" stroke-dasharray="188.5 37.7" transform="rotate(25 43 43)"/>
+          <text x="43" y="55" text-anchor="middle">2</text>
+        </svg>
+        <p>clics au maximum entre l'accueil et n'importe quelle démarche.</p>
+      </div>
+    </div>
+    <div data-cctp="top" data-pin="-14,-14">
+      <ol class="rows fold" id="top-rows">
+        <li class="row"><a href="demarche.html"><span class="n"></span><h3>Refaire sa carte d'identité ou son passeport</h3><span class="meta"><span class="pill">Sur rendez-vous</span></span><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+        <li class="row"><a href="#" data-soon><span class="n"></span><h3>Inscrire son enfant à l'école pour 2027/2028</h3><span class="meta"><span class="pill pill--online">En ligne</span></span><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+        <li class="row"><a href="#" data-soon><span class="n"></span><h3>Faire enlever un encombrant</h3><span class="meta"><span class="pill pill--online">En ligne</span><span class="pill">Gratuit</span></span><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+        <li class="row"><a href="#" data-soon><span class="n"></span><h3>Obtenir une carte de stationnement résident</h3><span class="meta"><span class="pill pill--online">En ligne</span></span><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+        <li class="row"><a href="#" data-soon><span class="n"></span><h3>Demander un acte de naissance</h3><span class="meta"><span class="pill pill--online">En ligne</span><span class="pill">Gratuit</span></span><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+        <li class="row"><a href="#" data-soon><span class="n"></span><h3>Signaler un problème dans la rue</h3><span class="meta"><span class="pill pill--online">En ligne</span><span class="pill">Appli Thelma</span></span><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+      </ol>
+      <button class="fold-btn" type="button" data-fold="#top-rows" data-more="Voir 3 autres démarches" data-less="Réduire la liste"><span>Voir 3 autres démarches</span><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></i></button>
+      <div class="all"><a class="more" href="#" data-soon>Toutes les démarches <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a><span class="muted">Classées par situation&nbsp;: naissance, déménagement, scolarité, travaux…</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Près de chez moi -->
+<section class="sec near" id="pres-de-chez-moi" aria-labelledby="t-near">
+  <div class="wrap">
+    <div>
+      <span class="label paren">Près de chez moi</span>
+      <h2 id="t-near">Votre adresse, vos réponses</h2>
+      <p class="lede">École de secteur, jours de collecte, travaux autour de chez vous, conseil de quartier&nbsp;: tout part de votre adresse.</p>
+      <div class="addr" data-cctp="near" data-pin="-14,-14">
+        <label for="addr">Votre adresse à Clichy</label>
+        <div class="addr__box">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 18s6-5.3 6-10a6 6 0 1 0-12 0c0 4.7 6 10 6 10z"/><circle cx="10" cy="8" r="2.2"/></svg>
+          <input id="addr" type="text" autocomplete="off" value="80 boulevard Jean-Jaurès, 92110 Clichy" aria-controls="addr-list" aria-autocomplete="list">
+        </div>
+        <div class="addr__list" id="addr-list" role="listbox"></div>
+      </div>
+      <p class="near__note">Sectorisation fictive pour la démonstration. En production, elle est importée depuis le fichier des rues de la Ville.</p>
+    </div>
+    <div class="near__wrap">
+      <div class="near__grid" id="near-out" aria-live="polite"></div>
+      <div class="m-nav" data-for="#near-out" aria-label="Faire défiler les réponses">
+        <button class="m-btn" type="button" data-dir="-1" aria-label="Précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
+        <div class="m-dots"><i></i><i></i><i></i><i></i></div>
+        <button class="m-btn" type="button" data-dir="1" aria-label="Suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Actualités -->
+<section class="sec" aria-labelledby="t-news">
+  <div class="wrap">
+    <div class="sec__head">
+      <div><span class="label paren">Actualités</span><h2 id="t-news">À la une à Clichy</h2></div>
+      <a class="more" href="#" data-soon>Toutes les actualités <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    </div>
+    <div class="news" data-cctp="news" data-pin="-14,-14">
+      <a class="card card--une" href="#" data-soon>
+        <div class="card__media duo">
+          <img src="assets/img/ecole.webp" alt="Le groupe scolaire de la rue des Écoles sur une carte postale ancienne" width="840" height="525">
+          <div class="typo-visual typo-visual--over"><span class="ringdeco" aria-hidden="true"></span><span class="label">Rentrée scolaire</span><p class="big" aria-hidden="true"><span>2027</span><span>2028</span></p></div>
+          <span class="credit">Carte postale ancienne, Licence Ouverte</span>
+        </div>
+        <div class="kicker"><span class="lvl lvl--une">À la une</span><span>Enfance</span><span>·</span><time>18 novembre 2026</time></div>
+        <h3><span class="dsk">Écoles maternelles&nbsp;: les inscriptions pour l'année 2027/2028 sont ouvertes</span><span class="mob">Maternelle&nbsp;: inscriptions 2027/2028 ouvertes</span></h3>
+        <p>Les familles des enfants nés en 2024 peuvent inscrire leur enfant en ligne, depuis le portail Clichy Famille. L'école de secteur se trouve à partir de l'adresse.</p>
+      </a>
+      <a class="card" href="#" data-soon>
+        <div class="card__media"><img src="assets/img/parc.webp" alt="Allée et pelouse du Parc des Impressionnistes" loading="lazy" width="800" height="600"><span class="credit">Artvill, CC BY-SA 4.0</span></div>
+        <div class="kicker"><span class="lvl">Secondaire</span><time>15 nov.</time></div>
+        <h3>Le Parc des Impressionnistes bientôt accessible aux chiens tenus en laisse</h3>
+      </a>
+      <a class="card" href="#" data-soon>
+        <div class="card__media"><img src="assets/img/artdeco.webp" alt="Façade d'immeuble art déco à Clichy" loading="lazy" width="800" height="600"><span class="credit">Lolo92110, CC BY-SA 4.0</span></div>
+        <div class="kicker"><span class="lvl">Secondaire</span><time>12 nov.</time></div>
+        <h3>Le jeu de piste du CCJ distingué à trois reprises</h3>
+      </a>
+    </div>
+    <div class="briefs fold" id="briefs">
+      <span class="label">Brèves</span>
+      <p class="brief"><time>Aujourd'hui, 9h</time>Marché du centre-ville&nbsp;: horaires habituels malgré les travaux de voirie.</p>
+      <p class="brief"><time>Hier</time>Clichy Actus n°123 est disponible en ligne et dans les boîtes aux lettres.</p>
+      <p class="brief"><time>20 nov.</time>Collecte de jouets au profit du CCAS jusqu'au 13 décembre, dans les équipements municipaux.</p>
+      <button class="fold-btn" type="button" data-fold="#briefs" data-more="Voir 2 autres brèves" data-less="Réduire"><span>Voir 2 autres brèves</span><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- Agenda -->
+<section class="sec agenda" id="agenda" aria-labelledby="t-agenda">
+  <div class="wrap">
+    <div class="sec__head">
+      <div><span class="label paren">Agenda</span><h2 id="t-agenda">Ce qui se passe à Clichy</h2></div>
+      <a class="more" href="#" data-soon>Tout l'agenda <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrer l'agenda" data-cctp="agenda" data-pin="-14,-14">
+      <button class="chip" type="button" data-f="all" aria-pressed="true">Tout</button>
+      <button class="chip" type="button" data-f="we" aria-pressed="false">Ce week-end</button>
+      <button class="chip" type="button" data-f="expo" aria-pressed="false">Expositions</button>
+      <button class="chip" type="button" data-f="free" aria-pressed="false">Gratuit</button>
+      <button class="chip" type="button" data-f="kids" aria-pressed="false">En famille</button>
+    </div>
+    <div class="events">
+      <a class="event" href="#" data-soon data-tags="we">
+        <div class="event__media"><img src="assets/img/eglise.webp" alt="L'église Saint-Vincent-de-Paul de Clichy" loading="lazy" width="800" height="600"><span class="event__date"><b>22</b><span>nov.</span><em>dim.</em></span></div>
+        <div class="event__body"><span class="kicker"><span class="badge-full">Complet</span>Concert</span><h3>Concert de la Sainte-Cécile</h3><p>Retransmis en direct sur la chaîne YouTube de la Ville.</p></div>
+      </a>
+      <a class="event" href="#" data-soon data-tags="expo free we kids">
+        <div class="event__media"><img src="assets/img/vendome-nuit-800.webp" alt="" loading="lazy" width="800" height="600"><span class="event__date"><b>9</b><span>janv.</span><em>jusqu'au</em></span></div>
+        <div class="event__body"><span class="kicker">Exposition · Pavillon Vendôme · <span class="free">Gratuit</span></span><h3>Aux frontières de l'imaginaire</h3><p>Exposition collective, du 14 octobre au 9 janvier.</p></div>
+      </a>
+      <a class="event" href="#" data-soon data-tags="expo free">
+        <div class="event__media"><img src="assets/img/vendome-cour.webp" alt="La cour pavée du Pavillon Vendôme" loading="lazy" width="800" height="600"><span class="event__date"><b>16</b><span>janv.</span><em>jusqu'au</em></span></div>
+        <div class="event__body"><span class="kicker">Exposition · <span class="free">Gratuit</span></span><h3>Personne chante</h3><p>Du 20 novembre au 16 janvier, à la Galerie Vendôme.</p></div>
+      </a>
+      <a class="event" href="#" data-soon data-tags="kids">
+        <div class="event__media"><img src="assets/img/projection-couleurs.webp" alt="Projection lumineuse colorée sur la façade du Pavillon Vendôme" loading="lazy" width="800" height="600"><span class="event__date"><b>12</b><span>déc.</span><em>jusqu'au</em></span></div>
+        <div class="event__body"><span class="kicker">Festival</span><h3>C.A.P.S Festival</h3><p>Du 27 juin au 12 décembre.</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Grands projets -->
+<section class="sec" id="grands-projets" aria-labelledby="t-proj">
+  <div class="wrap">
+    <div class="sec__head">
+      <div><span class="label paren">Grands projets</span><h2 id="t-proj">La ville qui change</h2><p>Chaque projet affiche son avancement réel, ses documents et ses rendez-vous de concertation.</p></div>
+      <a class="more" href="#" data-soon>Tous les projets <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    </div>
+    <div class="projects" data-cctp="projects" data-pin="-14,-14">
+      <a class="project" href="#" data-soon>
+        <span class="label muted">Culture</span>
+        <h3>L'Odyssée, cinéma et médiathèque</h3>
+        <p>Un nouvel équipement culturel avec sa propre billetterie en ligne, en cours de construction.</p>
+        <ol class="phases"><li class="done">Études</li><li class="done">Permis</li><li class="now">Construction<small>en cours</small></li><li>Ouverture</li></ol>
+      </a>
+      <a class="project" href="#" data-soon>
+        <span class="label muted">Numérique</span>
+        <h3>Le nouveau site de la Ville</h3>
+        <p>Pensé à partir de l'enquête menée auprès de 364 habitants en mars 2026. Une consultation citoyenne suivra son lancement.</p>
+        <ol class="phases"><li class="done">Enquête</li><li class="now">Conception<small>en cours</small></li><li>Lancement</li><li>Consultation</li></ol>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Découvrir -->
+<section class="sec" style="padding-top:0" aria-labelledby="t-disc">
+  <div class="wrap">
+    <div class="sec__head">
+      <div><span class="label paren">Découvrir Clichy</span><h2 id="t-disc">Patrimoine et balades</h2></div>
+      <a class="more" href="#" data-soon="Lien vers clichy-tourisme.fr (Office de tourisme)">Office de tourisme <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    </div>
+    <div class="discover" data-cctp="discover" data-pin="-14,-14">
+      <a class="discover__main" href="#" data-soon>
+        <img src="assets/img/maison-du-peuple-1600.webp" srcset="assets/img/maison-du-peuple-800.webp 800w, assets/img/maison-du-peuple-1600.webp 1600w" sizes="(max-width: 1000px) 100vw, 60vw" alt="La Maison du Peuple, façade de verre et d'acier, vue depuis la rue" loading="lazy" width="1600" height="1200">
+        <span class="credit">Lolo92110, CC BY-SA 4.0</span>
+        <div class="in"><span class="label">Architecture du XXe siècle</span><h3>La Maison du Peuple</h3><p>Œuvre de Beaudouin, Lods, Prouvé et Bodiansky, achevée en 1939&nbsp;: un manifeste de l'architecture de verre et d'acier, classé monument historique.</p></div>
+      </a>
+      <div class="discover__side">
+        <a class="card" href="#" data-soon>
+          <div class="card__media"><img src="assets/img/vendome-800.webp" alt="Le Pavillon Vendôme et sa cour pavée" loading="lazy" width="800" height="600"><span class="credit">Ec.Domnowall, CC BY 3.0</span></div>
+          <div class="kicker"><span>Patrimoine</span></div>
+          <h3>Le Pavillon Vendôme, lieu d'expositions</h3>
+        </a>
+        <a class="card" href="#" data-soon="Lien vers la maquette numérique Clichy 3D">
+          <div class="card__media" style="aspect-ratio:16/7"><div class="typo-visual typo-visual--ink"><span class="ringdeco" aria-hidden="true"></span><span class="label">Maquette numérique</span><p class="mid" aria-hidden="true">Clichy 3D</p></div></div>
+          <h3>Explorer la ville en trois dimensions</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Kiosque -->
+<section class="sec agenda" id="kiosque" aria-labelledby="t-kiosk">
+  <div class="wrap">
+    <div class="sec__head">
+      <div><span class="label paren">Kiosque</span><h2 id="t-kiosk">À lire</h2></div>
+      <a class="more" href="#" data-soon>Toutes les publications <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    </div>
+    <div class="kiosk" data-cctp="kiosk" data-pin="-14,-14">
+      <div class="pub">
+        <div class="cover" aria-hidden="true"><span class="c"></span><span class="t">Clichy<br>Actus</span><small>N°123 · Novembre 2026</small></div>
+        <div><span class="label muted">Magazine municipal</span><h3>Clichy Actus n°123</h3><p>Novembre 2026 · 48 pages</p><div class="links"><a href="#" data-soon><span class="dsk">Lire en ligne</span><span class="mob">Lire</span></a><a href="#" data-soon>PDF · 6,8 Mo</a></div></div>
+      </div>
+      <div class="pub">
+        <div class="cover cover--ink" aria-hidden="true"><span class="c"></span><span class="t">Saison<br>cultu&shy;relle</span><small>2026 / 2027</small></div>
+        <div><span class="label muted">Programme</span><h3>Saison culturelle 2026/2027</h3><p>Spectacles, concerts et expositions</p><div class="links"><a href="#" data-soon><span class="dsk">Lire en ligne</span><span class="mob">Lire</span></a><a href="#" data-soon>PDF · 4,1 Mo</a></div></div>
+      </div>
+      <div class="pub">
+        <div class="cover cover--paper" aria-hidden="true"><span class="c"></span><span class="t">Cinéma</span><small>Programme · Novembre 2026</small></div>
+        <div><span class="label muted">Programme</span><h3>Programme cinéma de novembre</h3><p>Séances et tarifs</p><div class="links"><a href="#" data-soon><span class="dsk">Lire en ligne</span><span class="mob">Lire</span></a><a href="#" data-soon>PDF · 1,2 Mo</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Espaces connexes -->
+<section class="sec" aria-labelledby="t-eco">
+  <div class="wrap">
+    <div class="sec__head">
+      <div><span class="label paren">Vos autres espaces</span><h2 id="t-eco">Tous les services de la Ville</h2><p>Chaque espace indique où il mène et avec quel compte, avant de quitter le site.</p></div>
+    </div>
+    <div class="eco fold" id="eco" data-cctp="eco" data-pin="-14,-14">
+      <a href="#" data-soon><b>Clichy Famille <span class="ext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></span></b><span>Cantine, périscolaire, factures</span><code>Compte Clichy Famille</code></a>
+      <a href="#" data-soon><b>Associations <span class="ext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></span></b><span>Annuaire et démarches</span><code>associations.ville-clichy.fr</code></a>
+      <a href="#" data-soon><b>Médiathèque <span class="ext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></span></b><span>Catalogue et réservations</span><code>Carte de lecteur</code></a>
+      <a href="#" data-soon><b>Urbanisme <span class="ext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></span></b><span>Dépôt de dossiers en ligne</span><code>Guichet unique</code></a>
+      <a href="#" data-soon><b>Je participe <span class="ext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></span></b><span>Concertations en cours</span><code>jeparticipe.ville-clichy.fr</code></a>
+      <a href="#" data-soon><b>Commerces <span class="ext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></span></b><span>Annuaire des commerçants</span><code>commerces.ville-clichy.fr</code></a>
+      <a href="#" data-soon><b>Recrutement <span class="ext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></span></b><span>Offres d'emploi de la Ville</span><code>recrutement.ville-clichy.fr</code></a>
+      <a href="#" data-soon><b>Clichy Ma Ville <span class="ext"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg></span></b><span>L'application mobile</span><code>App Store et Google Play</code></a>
+    </div>
+    <button class="fold-btn" type="button" data-fold="#eco" data-more="Voir les 4 autres espaces" data-less="Réduire la liste"><span>Voir les 4 autres espaces</span><i aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></i></button>
+  </div>
+</section>
+
+</main>
+
+<!-- Pied de page -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="logo"><span class="logo__img"></span></span>
+        <address>Hôtel de ville<br>80 boulevard Jean-Jaurès<br>92110 Clichy<br><b>01 47 15 30 00</b></address>
+      </div>
+      <div><h3>Mairie</h3><ul><li><a href="#" data-soon>Horaires et accès</a></li><li><a href="#" data-soon>Prendre rendez-vous</a></li><li><a href="#" data-soon>Écrire au maire</a></li><li><a href="#" data-soon>Annuaire des services</a></li></ul></div>
+      <div><h3>Ville</h3><ul><li><a href="#" data-soon>Conseil municipal</a></li><li><a href="#" data-soon>Marchés publics</a></li><li><a href="#" data-soon>La mairie recrute</a></li><li><a href="#" data-soon>Données ouvertes</a></li></ul></div>
+      <div><h3>Pratique</h3><ul><li><a href="#" data-soon>Plan de la ville</a></li><li><a href="#" data-soon>Clichy Actus</a></li><li><a href="#" data-soon>Numéros d'urgence</a></li><li><a href="#" data-soon>FAQ</a></li></ul></div>
+      <div>
+        <h3>La lettre de Clichy</h3>
+        <form class="news-form" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;padding:8px 14px;margin:0&quot;>Merci, confirmez votre inscription par e-mail.</p>'"><label class="sr" for="nl">Adresse e-mail</label><input id="nl" type="email" placeholder="Votre e-mail" required><button type="submit">S'inscrire</button></form>
+        <div class="socials"><a href="#" data-soon aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.9v3h2.6V21h3z"/></svg></a><a href="#" data-soon aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg></a><a href="#" data-soon aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.2 3.6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3.5 9.2h3.4V20H3.5zM9.1 9.2h3.3v1.5h.1c.5-.9 1.6-1.8 3.3-1.8 3.5 0 4.2 2.3 4.2 5.3V20h-3.4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V20H9.1z"/></svg></a><a href="#" data-soon aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></a><a href="#" data-soon aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3l-6.6 7.6L22 21h-6.1l-4.8-6.3L5.6 21h-3l7.1-8.1L2.3 3h6.2l4.3 5.7L17.8 3zm-1 16.2h1.7L7.3 4.7H5.5l11.3 14.5z"/></svg></a></div>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span data-cctp="weight" data-pin="-34,-10" class="weight">Poids de cette page <i id="page-weight">≈ 450 Ko</i></span>
+      <a href="#" data-soon>Accessibilité&nbsp;: audit RGAA 4.1 à la recette</a>
+      <a href="#" data-soon>Mentions légales</a>
+      <a href="#" data-soon>Données personnelles</a>
+      <a href="#" data-soon>Gestion des cookies</a>
+      <span>Photos Wikimedia Commons&nbsp;: Lolo92110, Artvill, Chabe01 (CC BY-SA 4.0), Ec.Domnowall (CC BY 3.0), carte postale ancienne (Licence Ouverte)</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Barre mobile -->
+<nav class="tabbar" aria-label="Accès rapides mobile">
+  <a href="#recherche" class="on"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9.5" cy="9.5" r="6.5"/><path d="m14.5 14.5 5 5"/></svg>Rechercher</a>
+  <a href="#t-top"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="14" height="17" rx="2"/><path d="M8 8h6M8 12h6M8 16h3"/></svg>Démarches</a>
+  <a href="#pres-de-chez-moi"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 20s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="11" cy="9" r="2.5"/></svg>Près de moi</a>
+  <a href="#agenda"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4.5" width="16" height="15" rx="2"/><path d="M3 9h16M7.5 2.5v4M14.5 2.5v4"/></svg>Agenda</a>
+  <button type="button" onclick="document.querySelector('.burger').click();window.scrollTo({top:0})"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h14M4 11h14M4 15h14"/></svg>Menu</button>
+</nav>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
