@@ -772,7 +772,6 @@ footer .rs a:hover span{text-decoration:underline;text-underline-offset:4px}
       </div>
       <a class="btn btn-w" href="#">Billetterie</a>
     </div></div>
-    <a class="entrer" href="#orienter" id="entrer" aria-label="Entrer : faire défiler la page">Entrer<span aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 2v15M4 11l6 6 6-6"/></svg></span></a>
   </div>
 </section>
 
@@ -958,7 +957,6 @@ footer .rs a:hover span{text-decoration:underline;text-underline-offset:4px}
   window.addEventListener('scroll',function(){if(!att){att=true;requestAnimationFrame(avance)}},{passive:true});
   window.addEventListener('resize',avance);window.addEventListener('load',avance);avance();
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(avance);
-  $('#entrer').addEventListener('click',function(e){e.preventDefault();var y=seuil.getBoundingClientRect().bottom+window.scrollY-bar.offsetHeight;window.scrollTo({top:y,behavior:calme?'auto':'smooth'})});
 
   /* Horaires du jour : 9 h à 18 h de mars à octobre, 9 h à 17 h le reste de l'année, fermeture annuelle du 16 décembre au 14 janvier */
   (function(){
